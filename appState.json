@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "SmartInsuranceCompany.py",
         "cursor": {
-          "lineNumber": 18,
-          "column": 91
+          "lineNumber": 28,
+          "column": 47
         },
         "config": {
           "runtime": "python3.8",
@@ -76,7 +76,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1611657783305
+    "lastSave": 1611660057422
   },
   "VCS_STATE": {
     "provider": "GitHub",

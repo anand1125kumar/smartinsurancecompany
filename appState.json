@@ -26,6 +26,10 @@
           {
             "resourceName": "alexaSK329955e6f87d4764bbfa53a99fc3a6ee",
             "config": {}
+          },
+          {
+            "resourceName": "alexaSK1ee44a93ba274479b763f58450e72e3c",
+            "config": {}
           }
         ],
         "lastUpdated": 1611657621535
@@ -43,6 +47,16 @@
           "type": 1,
           "verifiedID": true,
           "skillID": "amzn1.ask.skill.329955e6-f87d-4764-bbfa-53a99fc3a6ee",
+          "applicationID": ""
+        }
+      },
+      "alexaSK1ee44a93ba274479b763f58450e72e3c": {
+        "name": "alexaSK1ee44a93ba274479b763f58450e72e3c",
+        "type": "ALEXA",
+        "config": {
+          "type": 1,
+          "verifiedID": true,
+          "skillID": "amzn1.ask.skill.1ee44a93-ba27-4479-b763-f58450e72e3c",
           "applicationID": ""
         }
       }
@@ -76,7 +90,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1611660057422
+    "lastSave": 1611660403865
   },
   "VCS_STATE": {
     "provider": "GitHub",

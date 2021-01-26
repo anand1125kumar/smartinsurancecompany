@@ -93,6 +93,17 @@
         "Principal": "alexa-appkit.amazon.com",
         "EventSourceToken": "amzn1.ask.skill.329955e6-f87d-4764-bbfa-53a99fc3a6ee"
       }
+    },
+    "alexaSK1ee44a93ba27SmartInsuranceCompanyPermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Ref": "SmartInsuranceCompany"
+        },
+        "Principal": "alexa-appkit.amazon.com",
+        "EventSourceToken": "amzn1.ask.skill.1ee44a93-ba27-4479-b763-f58450e72e3c"
+      }
     }
   }
 }

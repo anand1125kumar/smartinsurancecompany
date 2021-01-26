@@ -1,0 +1,88 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "0c045a6e-39dd-4f3b-8ef9-0efd1ffdfd43": {
+        "id": "0c045a6e-39dd-4f3b-8ef9-0efd1ffdfd43",
+        "parent": null,
+        "name": "SmartInsuranceCompany.py",
+        "type": "PYTHON_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "SmartInsuranceCompany.py",
+        "cursor": {
+          "lineNumber": 122,
+          "column": 25
+        },
+        "config": {
+          "runtime": "python3.8",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "name": "SmartInsuranceCompany"
+        },
+        "triggers": [
+          {
+            "resourceName": "alexaSK329955e6f87d4764bbfa53a99fc3a6ee",
+            "config": {}
+          }
+        ],
+        "lastUpdated": 1611657621535
+      }
+    },
+    "openFiles": [
+      "0c045a6e-39dd-4f3b-8ef9-0efd1ffdfd43"
+    ],
+    "currentFileId": "0c045a6e-39dd-4f3b-8ef9-0efd1ffdfd43",
+    "resources": {
+      "alexaSK329955e6f87d4764bbfa53a99fc3a6ee": {
+        "name": "alexaSK329955e6f87d4764bbfa53a99fc3a6ee",
+        "type": "ALEXA",
+        "config": {
+          "type": 1,
+          "verifiedID": true,
+          "skillID": "amzn1.ask.skill.329955e6-f87d-4764-bbfa-53a99fc3a6ee",
+          "applicationID": ""
+        }
+      }
+    },
+    "customTemplate": {
+      "syntax": "JSON",
+      "overrideDefault": false,
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "sigmaVersion": "1.5.1",
+    "projectName": "SmartInsuranceCompany",
+    "projectDescription": "Smart Insurance Company",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "language": "python",
+    "platformRegions": {},
+    "lastSave": 1611657783305
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "smartinsurancecompany",
+      "url": "https://github.com/anand1125kumar/smartinsurancecompany"
+    }
+  }
+}

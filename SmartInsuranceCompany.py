@@ -39,7 +39,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
         ########################### verify existing user #############################################################
         try:
             dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('BancsLogin')
+            table = dynamodb.Table('Login')
             data1 = table.get_item(
                 Key={
                     'username': username

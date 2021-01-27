@@ -636,7 +636,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
                 underwriting = str(data['Item']['underwritingflag'])
                 
                 if(underwriting == 'no'):
-                    speakText = "Your underwriting details are not incomplete, would you like to capture your underwriting details"
+                    speakText = "Your underwriting details are incomplete, would you like to capture your underwriting details"
 
                 else:
                     speakText = "How may I help you!"                

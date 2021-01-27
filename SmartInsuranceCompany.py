@@ -458,6 +458,15 @@ class LoginIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
+class searchappIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("searchappIntent")(handler_input)
+
+    def handle(self, handler_input):
+        handler_input.response_builder.speak("Please tell your app number").set_should_end_session(False)
+        return handler_input.response_builder.response
+
+
 class UserNameIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("UserNameIntent")(handler_input)

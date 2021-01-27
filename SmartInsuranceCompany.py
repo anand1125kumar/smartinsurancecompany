@@ -363,7 +363,7 @@ class RegisterInsuranceTermIntentHandler(AbstractRequestHandler):
         ## update cover amount  in bancs policy details table ##########
         try:
             dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('Bancs_Policy_Details')
+            table = dynamodb.Table('Policy_Details')
             data = table.update_item(
                 Key={
                     'username': username
@@ -430,7 +430,7 @@ class RegisterInsuranceTermIntentHandler(AbstractRequestHandler):
                     'username': username
                     },
                     UpdateExpression="set policynumber=:pn, premiumamount=:pa, premiumduedate=:pdd, advisorname=:adv",
-                    ExpressionAttributeValues={':pn': str(policynumber), ':pa': str(premiumamount), ':pdd': nextduedate, ':adv': 'TCS BaNCS Voice'}         
+                    ExpressionAttributeValues={':pn': str(policynumber), ':pa': str(premiumamount), ':pdd': nextduedate, ':adv': 'Alexa Advisor'}         
                                                 
                 )
 
@@ -624,7 +624,7 @@ class PINIntentHandler(AbstractRequestHandler):
                 raise(e)
 
         else:
-            speech_text = "Hello " + data['Item']['fullname'] + ".   You have successfully logged in TCS Bancs application,    hope you are doing great, your current location is " + data['Item']['city'] + ".   How may I help you?"
+            speech_text = "Hello " + data['Item']['fullname'] + ".   You have successfully logged in Smart Insurance Company portal, hope you are doing great, your current location is " + data['Item']['city'] + ".   How may I help you?"
             loginFlag = 'True'
         
             try:

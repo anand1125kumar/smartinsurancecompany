@@ -579,7 +579,7 @@ class PremiumAmountIntentHandler(AbstractRequestHandler):
 
 class appNumberIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
-        return is_intent_name("PremiumAmountIntent")(handler_input)
+        return is_intent_name("appNumberIntent")(handler_input)
 
 
     #fetch premium amount

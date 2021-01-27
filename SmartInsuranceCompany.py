@@ -41,7 +41,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
         ########################### verify existing user #############################################################
         try:
             dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('BancsLogin')
+            table = dynamodb.Table('Login')
             data1 = table.get_item(
                 Key={
                     'username': username
@@ -69,7 +69,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
 
             try:
                 dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('Bancs_Log')
+                table = dynamodb.Table('Log')
                 data1 = table.put_item(
                     Item={
                         'SerialNumber': '1',
@@ -82,7 +82,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
 
             try:
                 dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('BancsLogin')
+                table = dynamodb.Table('Login')
                 data1 = table.put_item(
                     Item={
                         'username': username,
@@ -97,7 +97,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
 
             try:
                 dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('Bancs_Temp')
+                table = dynamodb.Table('Temp')
                 data1 = table.put_item(
                     Item={
                         'username': username,
@@ -113,7 +113,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
 
             try:
                 dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('Bancs_Policy_Details')
+                table = dynamodb.Table('Policy_Details')
                 data1 = table.put_item(
                     Item={
                         'username': username
@@ -146,7 +146,7 @@ class RegisterPasswordIntentHandler(AbstractRequestHandler):
         ## Fetch username from log table##############################
         try:
             dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('Bancs_Log')
+            table = dynamodb.Table('Log')
             data1 = table.get_item(
                 Key={
                     'SerialNumber': '1'
@@ -164,7 +164,7 @@ class RegisterPasswordIntentHandler(AbstractRequestHandler):
 
         try:
                 dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('BancsLogin')
+                table = dynamodb.Table('Login')
                 data = table.update_item(
                     Key={
                         'username': username

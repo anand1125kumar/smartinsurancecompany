@@ -463,7 +463,10 @@ class searchappIntentHandler(AbstractRequestHandler):
         return is_intent_name("searchappIntent")(handler_input)
 
     def handle(self, handler_input):
-        handler_input.response_builder.speak("Please tell your app number").set_should_end_session(False)
+
+        
+        speech_text = "Please tell your app number"
+        handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
 
@@ -569,6 +572,93 @@ class PremiumAmountIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 ###########################################################################################################
+
+
+
+###############################################  search app      #############################################################
+
+class appNumberIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("PremiumAmountIntent")(handler_input)
+
+
+    #fetch premium amount
+    
+
+    def handle(self, handler_input):
+        
+        ## Fetch username from Bancs_log table##############################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Log')
+            data1 = table.get_item(
+                Key={
+                    'SerialNumber': '1'
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        username = data1['Item']['username'] 
+        print(username)
+
+    ##### FETCH login status ########################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Temp')
+            data1 = table.get_item(
+                Key={
+                    'username': username
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        status = data1['Item']['status']
+        status = str(status)
+    ####################################################
+
+        if(status == 'True'):
+        #####################################################################
+            try:
+                dynamodb = boto3.resource('dynamodb')
+                table = dynamodb.Table('Policy_Details')
+                data = table.get_item(
+                    Key={
+                        'username': username
+                        }
+                )
+
+                underwriting = str(data['Item']['underwritingflag'])
+                
+                if(underwriting == 'no'):
+                    speakText = "Would you like to capture your underwriting details"
+
+                else:
+                    speakText = "How may I help you!"
+
+                
+
+              
+            except BaseException as e:
+                print(e)
+                raise(e) 
+        else:
+                speakText = "Please enter valid username and pin for successfull login."
+
+        
+        
+        handler_input.response_builder.speak(speakText).set_should_end_session(False)
+        return handler_input.response_builder.response
+
+###########################################################################################################
+
+
+#############################################################################################################
 #BancsPINIntentHandler
 #BancsLoginDetailsIntentHandler
 class PINIntentHandler(AbstractRequestHandler):

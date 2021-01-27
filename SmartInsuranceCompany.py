@@ -1,4 +1,5 @@
 import boto3
+ddb = boto3.client("dynamodb")
 import random
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
@@ -35,7 +36,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
         
         username = handler_input.request_envelope.request.intent.slots['username'].value
         username = str(username.lower())
-        print(username)
+       
 
         ########################### verify existing user #############################################################
         try:

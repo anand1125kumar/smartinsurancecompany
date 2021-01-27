@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "SmartInsuranceCompany.py",
         "cursor": {
-          "lineNumber": 38,
-          "column": 23
+          "lineNumber": 564,
+          "column": 7
         },
         "config": {
           "runtime": "python3.8",
@@ -59,6 +59,25 @@
           "skillID": "amzn1.ask.skill.1ee44a93-ba27-4479-b763-f58450e72e3c",
           "applicationID": ""
         }
+      },
+      "ddbLogin": {
+        "name": "ddbLogin",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:us-east-1:571286446617:table/Login",
+            "name": "Login",
+            "partitionKey": "username",
+            "partitionKeyType": "S",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "",
+            "payPerRequest": true,
+            "mode": 1,
+            "secondaryIndexes": {}
+          }
+        }
       }
     },
     "customTemplate": {
@@ -84,6 +103,13 @@
           "version": "1.13.0",
           "dev": false,
           "language": "python"
+        },
+        "boto3": {
+          "name": "boto3",
+          "language": "python",
+          "version": "1.16.43",
+          "dev": true,
+          "notRemovable": false
         }
       }
     }
@@ -97,7 +123,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1611760293583
+    "lastSave": 1611761404281
   },
   "VCS_STATE": {
     "provider": "GitHub",

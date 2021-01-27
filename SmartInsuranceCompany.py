@@ -35,6 +35,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
         
         username = handler_input.request_envelope.request.intent.slots['username'].value
         username = str(username.lower())
+        print(username)
 
         ########################### verify existing user #############################################################
         try:

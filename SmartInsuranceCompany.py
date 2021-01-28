@@ -602,7 +602,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
             raise(e)    
 
         username = data1['Item']['username'] 
-        if(username != null):
+        
 
 
     ##### FETCH login status ########################
@@ -650,9 +650,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
                 else:
                     speakText = "Please enter valid username and pin for successfull login."
 
-            else:
-                speakText = "Please enter valid username and pin for successfull login."
-        
+                    
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 

@@ -606,31 +606,31 @@ class appNumberIntentHandler(AbstractRequestHandler):
 
 
     ##### FETCH login status ########################
-            try:
-                dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('Temp')
-                data1 = table.get_item(
-                    Key={
-                        'username': username
-                        }
-                )
+        try:
+               dynamodb = boto3.resource('dynamodb')
+               table = dynamodb.Table('Temp')
+               data1 = table.get_item(
+                   Key={
+                       'username': username
+                       }
+               )
               
-            except BaseException as e:
-                print(e)
-                raise(e)    
+           except BaseException as e:
+               print(e)
+               raise(e)    
 
-            status = data1['Item']['status']
-            status = str(status)
+           status = data1['Item']['status']
+           status = str(status)
     ####################################################
 
-            if(status == 'True'):
+           if(status == 'True'):
         #####################################################################
-                try:
-                    dynamodb = boto3.resource('dynamodb')
-                    table = dynamodb.Table('Policy_Details')
-                    data = table.get_item(
-                        Key={
-                            'username': username
+               try:
+                   dynamodb = boto3.resource('dynamodb')
+                   table = dynamodb.Table('Policy_Details')
+                   data = table.get_item(
+                       Key={
+                           'username': username
                             }
                     )
 
@@ -647,8 +647,8 @@ class appNumberIntentHandler(AbstractRequestHandler):
                     print(e)
                     raise(e)
 
-                else:
-                    speakText = "Please enter valid username and pin for successfull login."
+            else:
+                  speakText = "Please enter valid username and pin for successfull login."
 
                     
         handler_input.response_builder.speak(speakText).set_should_end_session(False)

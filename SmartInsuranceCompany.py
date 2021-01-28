@@ -75,16 +75,15 @@ class appNumberIntentHandler(AbstractRequestHandler):
                 )
 
                 uwrflag = str(data['Item']['underwritingflag'])
-
                 
-                speakText = uwrflag              
+                if(uwrflag == "no"):
+                    speakText = "Would you like to capture your underwriting details?"               
 
             except BaseException as e:
                 print(e)
                 raise(e) 
         else:
                 speakText = "Please enter valid username and pin for successfull login."
-
 
 
         handler_input.response_builder.speak(speakText).set_should_end_session(False)

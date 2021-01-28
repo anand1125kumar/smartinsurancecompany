@@ -18,6 +18,9 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         handler_input.response_builder.speak("Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
         return handler_input.response_builder.response 
+
+
+
 ################################# I would like yo buy a policy online ##################################################################################
 class appNumberIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -71,12 +74,11 @@ class appNumberIntentHandler(AbstractRequestHandler):
                         }
                 )
 
-                premiumamount = str(data['Item']['premiumamount'])
-                print(premiumamount)
+                uwrflag = str(data['Item']['underwritingflag'])
 
-                speakText = "Your next premium due amount is Rupees "+premiumamount
+                if(uwrflag == no):
+                    speakText = "Would you like to capture your underwriting details?"              
 
-              
             except BaseException as e:
                 print(e)
                 raise(e) 
@@ -85,11 +87,11 @@ class appNumberIntentHandler(AbstractRequestHandler):
 
 
 
-
-
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 #####################################################################################################################
+
+
 
 class RegisterUserIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):

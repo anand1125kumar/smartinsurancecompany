@@ -574,9 +574,6 @@ class PremiumAmountIntentHandler(AbstractRequestHandler):
 ###########################################################################################################
 
 
-
-###############################################  search app      #############################################################
-
 class appNumberIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("appNumberIntent")(handler_input)
@@ -602,60 +599,67 @@ class appNumberIntentHandler(AbstractRequestHandler):
             raise(e)    
 
         username = data1['Item']['username'] 
-        
-
+        print(username)
 
     ##### FETCH login status ########################
         try:
-               dynamodb = boto3.resource('dynamodb')
-               table = dynamodb.Table('Temp')
-               data1 = table.get_item(
-                   Key={
-                       'username': username
-                       }
-               )
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Temp')
+            data1 = table.get_item(
+                Key={
+                    'username': username
+                    }
+            )
               
-           except BaseException as e:
-               print(e)
-               raise(e)    
+        except BaseException as e:
+            print(e)
+            raise(e)    
 
-           status = data1['Item']['status']
-           status = str(status)
+        status = data1['Item']['status']
+        status = str(status)
     ####################################################
 
-           if(status == 'True'):
+        if(status == 'True'):
         #####################################################################
-               try:
-                   dynamodb = boto3.resource('dynamodb')
-                   table = dynamodb.Table('Policy_Details')
-                   data = table.get_item(
-                       Key={
-                           'username': username
-                            }
-                    )
+            try:
+                dynamodb = boto3.resource('dynamodb')
+                table = dynamodb.Table('Policy_Details')
+                data = table.get_item(
+                    Key={
+                        'username': username
+                        }
+                )
 
-                    underwriting = str(data['Item']['underwritingflag'])
+                uwrflag = str(data['Item']['underwritingflag'])
+
+                if(uwrflag == no):
+                    speakText = "Your underwriting details are incomplete, would you like to capture your underwriting details?"
                 
-                    if(underwriting == 'no'):
-                        speakText = "Your underwriting details are incomplete, would you like to capture your underwriting details"
+                else:
+                    speakText = "How may I help you?"
+               
 
-                    else:
-                        speakText = "How may I help you!"                
+                
 
               
-                except BaseException as e:
-                    print(e)
-                    raise(e)
+            except BaseException as e:
+                print(e)
+                raise(e) 
+        else:
+                speakText = "Please enter valid username and pin for successfull login."
 
-            else:
-                  speakText = "Please enter valid username and pin for successfull login."
-
-                    
+        
+        
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 
 ###########################################################################################################
 
+
+
+
+
+###############################################  search app      ##########################################
 
 #############################################################################################################
 #BancsPINIntentHandler

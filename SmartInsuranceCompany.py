@@ -578,7 +578,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("appNumberIntent")(handler_input)
 
-        speakText = "Would you like to capture your underwriting details"
+        speakText = "Would you like to capture your underwriting details?"
         
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response

@@ -24,7 +24,70 @@ class appNumberIntentHandler(AbstractRequestHandler):
         return is_intent_name("appNumberIntent")(handler_input)
 
     def handle(self, handler_input):
-        handler_input.response_builder.speak("Would you like to capture your underwriting details").set_should_end_session(False)
+
+         ## Fetch username from Bancs_log table##############################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Log')
+            data1 = table.get_item(
+                Key={
+                    'SerialNumber': '1'
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        username = data1['Item']['username'] 
+        print(username)
+
+    ##### FETCH login status ########################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Temp')
+            data1 = table.get_item(
+                Key={
+                    'username': username
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        status = data1['Item']['status']
+        status = str(status)
+    ####################################################
+
+        if(status == 'True'):
+        #####################################################################
+            try:
+                dynamodb = boto3.resource('dynamodb')
+                table = dynamodb.Table('Policy_Details')
+                data = table.get_item(
+                    Key={
+                        'username': username
+                        }
+                )
+
+                premiumamount = str(data['Item']['premiumamount'])
+                print(premiumamount)
+
+                speakText = "Your next premium due amount is Rupees "+premiumamount
+
+              
+            except BaseException as e:
+                print(e)
+                raise(e) 
+        else:
+                speakText = "Please enter valid username and pin for successfull login."
+
+
+
+
+
+        handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 #####################################################################################################################
 

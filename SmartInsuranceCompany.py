@@ -19,6 +19,15 @@ class LaunchRequestHandler(AbstractRequestHandler):
         handler_input.response_builder.speak("Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
         return handler_input.response_builder.response 
 ################################# I would like yo buy a policy online ##################################################################################
+class appNumberIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("appNumberIntent")(handler_input)
+
+    def handle(self, handler_input):
+        handler_input.response_builder.speak("Would you like to capture your underwriting details").set_should_end_session(False)
+        return handler_input.response_builder.response
+#####################################################################################################################
+
 class RegisterUserIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("RegisterUserIntent")(handler_input)
@@ -26,7 +35,8 @@ class RegisterUserIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         handler_input.response_builder.speak("Great!, Please tell what should be your user name for online registration").set_should_end_session(False)
         return handler_input.response_builder.response
-#####################################################################################################################
+
+
 ############################### My user name for registration should be ****** ####################################
 class RegisterUserNameIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -574,14 +584,7 @@ class PremiumAmountIntentHandler(AbstractRequestHandler):
 ###########################################################################################################
 
 
-class appNumberIntentHandler(AbstractRequestHandler):
-    def can_handle(self, handler_input):
-        return is_intent_name("appNumberIntent")(handler_input)
 
-        speakText = "Would you like to capture your underwriting details?"
-        
-        handler_input.response_builder.speak(speakText).set_should_end_session(False)
-        return handler_input.response_builder.response
 
 ###########################################################################################################
 

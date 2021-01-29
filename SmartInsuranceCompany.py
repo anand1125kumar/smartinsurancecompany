@@ -568,6 +568,32 @@ class UserNameIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
+##################################################################################################################
+##################################################################################################################
+
+
+class captureunderwritingsIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("captureunderwritingsIntent")(handler_input)
+
+    def handle(self, handler_input):
+        uwrdecision = handler_input.request_envelope.request.intent.slots['captureuwr'].value
+        uwrdecision = uwrdecision.lower()
+
+        if(uwrdecision == "yes"):
+            speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
+
+        else:
+            speakText = "Ok,do you need any other help?"
+
+
+        handler_input.response_builder.speak("").set_should_end_session(False)
+        return handler_input.response_builder.response
+
+
+###########################################################################################################################
+###########################################################################################################################
+
 
 
 ######################################## 10-Oct-2020  #####################################################

@@ -581,15 +581,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         uwrdecision = uwrdecision.lower()
         speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury(e,g. motot racing, aviation, combat sports, water sports etc."
 
-        if(uwrdecision == "yes"):
-            a = 1234
             
-
-        else:
-            a = 1234
-            
-
-
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 

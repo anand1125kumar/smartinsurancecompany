@@ -571,23 +571,80 @@ class UserNameIntentHandler(AbstractRequestHandler):
 ##################################################################################################################
 ##################################################################################################################
 
-
+###########################################################################################################################
+###########################################################################################################################
 class captureunderwritingsIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("captureunderwritingsIntent")(handler_input)
 
     def handle(self, handler_input):
+
         uwrdecision = handler_input.request_envelope.request.intent.slots['travelquestiona'].value
         uwrdecision = uwrdecision.lower()
-        speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury(e,g. motot racing, aviation, combat sports, water sports etc."
+        speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury(example motor racing, aviation, combat sports, water sports etc."
 
+        ## Fetch username from Bancs_log table##############################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Log')
+            data1 = table.get_item(
+                Key={
+                    'SerialNumber': '1'
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        username = data1['Item']['username'] 
+        print(username)
+
+
+        ##### FETCH login status ########################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Temp')
+            data1 = table.get_item(
+                Key={
+                    'username': username
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        status = data1['Item']['status']
+        status = str(status)
+    ####################################################
+
+        #####################################################################
+        if(status == 'True'):
             
+            try:
+                dynamodb = boto3.resource('dynamodb')
+                table = dynamodb.Table('Policy_Details')
+                data = table.update_item(
+                    Key={
+                        'username': username
+                        },
+                        UpdateExpression="set uwrquestion1=:ca",
+                        ExpressionAttributeValues={':ca': str(uwrdecision)}         
+                                                
+                    )
+
+            except BaseException as e:
+                print(e)
+                raise(e)
+
+
+        else:
+            speakText = "Please enter valid username and pin for successfull login."               
+
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
-
-
-###########################################################################################################################
-###########################################################################################################################
+#########################################################################################################################
 
 
 

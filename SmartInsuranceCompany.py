@@ -81,7 +81,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
 
             except BaseException as e:
                 print(e)
-                raise(e) 
+                raise(e)
         else:
                 speakText = "Please enter valid username and pin for successfull login."
 
@@ -1179,6 +1179,7 @@ sb.add_request_handler(searchappIntentHandler())
 sb.add_request_handler(appNumberIntentHandler())
 sb.add_request_handler(PremiumAmountIntentHandler())
 sb.add_request_handler(PINIntentHandler())
+sb.add_request_handler(captureunderwritingsIntentHandler())
 sb.add_request_handler(RegisterCityIntentHandler())
 sb.add_request_handler(PremiumDueDateIntentHandler())
 sb.add_request_handler(ViewCoverAmountIntentHandler())

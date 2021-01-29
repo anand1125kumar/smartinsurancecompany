@@ -6,10 +6,8 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.utils import is_request_type, is_intent_name
 import datetime
-
 global username
 global loginFlag
-
 
 class LaunchRequestHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -17,8 +15,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         handler_input.response_builder.speak("Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
-        return handler_input.response_builder.response 
-
+        return handler_input.response_builder.response
 
 
 ################################# I would like yo buy a policy online ##################################################################################
@@ -88,9 +85,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
-#####################################################################################################################
-
-
+#############################################################################################################################
 
 class RegisterUserIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -100,8 +95,10 @@ class RegisterUserIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak("Great!, Please tell what should be your user name for online registration").set_should_end_session(False)
         return handler_input.response_builder.response
 
+###############################################################################################################################
 
-############################### My user name for registration should be ****** ####################################
+
+############################### My user name for registration should be ****** #############################################
 class RegisterUserNameIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("RegisterUserNameIntent")(handler_input)
@@ -112,7 +109,8 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
         username = str(username.lower())
        
 
-        ########################### verify existing user #############################################################
+##################################### verify existing user #####################################################################
+
         try:
             dynamodb = boto3.resource('dynamodb')
             table = dynamodb.Table('Login')
@@ -207,7 +205,10 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(speak_text).set_should_end_session(False)
         return handler_input.response_builder.response
+
 ########################################################################################################################
+
+
 ############################### My pin should be ****** ####################################
 class RegisterPasswordIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -254,7 +255,12 @@ class RegisterPasswordIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak("OK, Please tell your full name").set_should_end_session(False)
         return handler_input.response_builder.response
+
+
 ########################################################################################################################
+
+
+
 ############################### My full name is ****** ####################################
 class RegisterFullNameIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -348,13 +354,12 @@ class RegisterCityIntentHandler(AbstractRequestHandler):
             print(e)
             raise(e)
 
-
-        
-
         handler_input.response_builder.speak("OK, please tell me how much insurance cover amount you want").set_should_end_session(False)
         return handler_input.response_builder.response
 
 ########################################################################################################################
+
+
 
 ############################### Insurance cover amount should be ****** ####################################
 class RegisterCoverAmountIntentHandler(AbstractRequestHandler):
@@ -400,13 +405,13 @@ class RegisterCoverAmountIntentHandler(AbstractRequestHandler):
             print(e)
             raise(e)
 
-
-        
-
         handler_input.response_builder.speak("OK, please tell me how much should be the term of the insurance").set_should_end_session(False)
         return handler_input.response_builder.response
 
 ########################################################################################################################
+
+
+
 
 
 ############################### Insurance term should be ****** ####################################
@@ -568,10 +573,15 @@ class UserNameIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
+
 ##################################################################################################################
 ##################################################################################################################
 
 ###########################################################################################################################
+
+
+
+
 ###########################################################################################################################
 class captureunderwritingsIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -649,8 +659,8 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
 
 
 
-######################################## 10-Oct-2020  #####################################################
 
+######################################## 10-Oct-2020  #####################################################
 class PremiumAmountIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("PremiumAmountIntent")(handler_input)
@@ -718,24 +728,15 @@ class PremiumAmountIntentHandler(AbstractRequestHandler):
                 raise(e) 
         else:
                 speakText = "Please enter valid username and pin for successfull login."
-
-        
         
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 
 ###########################################################################################################
 
-
-
-
 ###########################################################################################################
-
-
-
-
-
 ###############################################  search app      ##########################################
+
 
 #############################################################################################################
 #BancsPINIntentHandler

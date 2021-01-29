@@ -582,9 +582,11 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury(e,g. motot racing, aviation, combat sports, water sports etc."
 
         if(uwrdecision == "yes"):
+            a = 1234
             
 
         else:
+            a = 1234
             
 
 

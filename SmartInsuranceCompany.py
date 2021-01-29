@@ -622,7 +622,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         #####################################################################
         if(status == 'True'):
             
-            speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury(example motor racing, aviation, combat sports, water sports etc."
+            speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury, example motor racing, aviation, combat sports, water sports etc."
             try:
                 dynamodb = boto3.resource('dynamodb')
                 table = dynamodb.Table('Policy_Details')

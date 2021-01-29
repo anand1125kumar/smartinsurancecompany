@@ -577,7 +577,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         return is_intent_name("captureunderwritingsIntent")(handler_input)
 
     def handle(self, handler_input):
-        uwrdecision = handler_input.request_envelope.request.intent.slots['captureuwr'].value
+        uwrdecision = handler_input.request_envelope.request.intent.slots['travelquestiona'].value
         uwrdecision = uwrdecision.lower()
         speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury(e,g. motot racing, aviation, combat sports, water sports etc."
 

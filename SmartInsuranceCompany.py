@@ -587,7 +587,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
             speakText = "Ok,do you need any other help?"
 
 
-        handler_input.response_builder.speak("").set_should_end_session(False)
+        handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 
 

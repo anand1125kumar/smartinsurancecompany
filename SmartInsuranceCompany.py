@@ -772,29 +772,24 @@ class answerIntentHandler(AbstractRequestHandler):
 
                 for i in range(2,9):
                     
-                    if(tempfieldname != 'null'):
-                        
-                        try:
-                            k=i-1
-                            k=str(k)
-                            dynamodb = boto3.resource('dynamodb')
-                            table = dynamodb.Table('Policy_Details')
-                            data = table.update_item(
-                                Key={
-                                        'username': username
-                                    },
-                                UpdateExpression="set uwrans"+k+" =:ca",
-                                ExpressionAttributeValues={':ca': answer}         
+                                         
+                    try:
+                        k=i-1
+                        k=str(k)
+                        dynamodb = boto3.resource('dynamodb')
+                        table = dynamodb.Table('Policy_Details')
+                        data = table.update_item(
+                            Key={
+                                    'username': username
+                                },
+                            UpdateExpression="set uwrans"+k+" =:ca",
+                            ExpressionAttributeValues={':ca': answer}         
                                                 
-                                )
+                            )
 
-                        except BaseException as e:
-                            print(e)
-                            raise(e)
-
-
-
-
+                    except BaseException as e:
+                        print(e)
+                        raise(e)
 
                     try:
                         dynamodb = boto3.resource('dynamodb')

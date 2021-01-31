@@ -808,7 +808,7 @@ class answerIntentHandler(AbstractRequestHandler):
                     uwrans = str(uwrans)
 
                     if(uwrans == 'null'):
-                        uwrquest = uwrans = data1['Item']['uwrquest'+i]
+                        uwrquest = data1['Item']['uwrquest'+i]
                         uwrquest = str(uwrquest)
                         speakText = uwrquest
                         

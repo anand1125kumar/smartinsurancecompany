@@ -792,7 +792,7 @@ class answerIntentHandler(AbstractRequestHandler):
 
                 #speakText = "underwriting question 2."
 
-                for i in range(9):
+                for i in range(2,9):
                     try:
                         dynamodb = boto3.resource('dynamodb')
                         table = dynamodb.Table('Policy_Details')

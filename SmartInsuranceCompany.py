@@ -649,7 +649,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                 raise(e)    
 
                 uwrquest = data1['Item']['uwrquest1']
-                uwrquest = str(uwrquest)
+                #uwrquest = str(uwrquest)
 
                 speakText = uwrquest
 
@@ -663,7 +663,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                         'username': username
                         },
                         UpdateExpression="set tempfield=:ca",
-                        ExpressionAttributeValues={':ca': 'uwrquestion1'}         
+                        ExpressionAttributeValues={':ca': 'uwrquest1'}         
                                                 
                     )
 

@@ -658,8 +658,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
 
             else:
                 speakText = "It's okay, how may I help you?"
-
-                 try:
+                try:
                     dynamodb = boto3.resource('dynamodb')
                     table = dynamodb.Table('Temp')
                     data = table.update_item(
@@ -672,8 +671,8 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                     )
 
                 except BaseException as e:
-                    print(e)
-                    raise(e)
+                        print(e)
+                        raise(e)
 
             
 

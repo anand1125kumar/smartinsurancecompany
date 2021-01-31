@@ -788,7 +788,46 @@ class answerIntentHandler(AbstractRequestHandler):
                     raise(e)
 
 
-                speakText = "underwriting question 2."
+                #speakText = "underwriting question 2."
+
+                for i in range(2,9):
+                    try:
+                        dynamodb = boto3.resource('dynamodb')
+                        table = dynamodb.Table('Policy_Details')
+                        data1 = table.get_item(
+                                Key={
+                                        'username': username
+                                    }
+                                )
+              
+                    except BaseException as e:
+                        print(e)
+                        raise(e)    
+
+                    uwrans = data1['Item']['uwrans'+i]
+                    uwrans = str(uwrans)
+                    
+                    if(uwrans == 'null'):
+                        uwrquest = uwrans = data1['Item']['uwrquest'+i]
+                        uwrquest = str(uwrquest)
+                        speakText = uwrquest
+                        break
+
+                        try:
+                            dynamodb = boto3.resource('dynamodb')
+                            table = dynamodb.Table('Temp')
+                            data = table.update_item(
+                            Key={
+                                    'username': username
+                                    },
+                            UpdateExpression="set tempfield =:ca",
+                            ExpressionAttributeValues={':ca': 'uwrquest'+i}         
+                                                
+                                    )
+
+                        except BaseException as e:
+                            print(e)
+                            raise(e)
                 
 
         else:

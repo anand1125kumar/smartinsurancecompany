@@ -592,6 +592,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         uwrdecision = handler_input.request_envelope.request.intent.slots['uwrflag'].value
         uwrdecision = uwrdecision.lower()
         
+        
 
         ## Fetch username from Bancs_log table##############################
         try:
@@ -635,9 +636,44 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
 
             if(uwrdecision == 'yes'):                
                 speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
+                
+                try:
+                    dynamodb = boto3.resource('dynamodb')
+                    table = dynamodb.Table('Temp')
+                    data = table.update_item(
+                    Key={
+                        'username': username
+                        },
+                        UpdateExpression="set tempfield=:ca",
+                        ExpressionAttributeValues={':ca': 'uwrquestion1'}         
+                                                
+                    )
+
+                except BaseException as e:
+                    print(e)
+                    raise(e)
+
+
+
 
             else:
                 speakText = "It's okay, how may I help you?"
+
+                 try:
+                    dynamodb = boto3.resource('dynamodb')
+                    table = dynamodb.Table('Temp')
+                    data = table.update_item(
+                    Key={
+                        'username': username
+                        },
+                        UpdateExpression="set tempfield=:ca",
+                        ExpressionAttributeValues={':ca': 'null'}         
+                                                
+                    )
+
+                except BaseException as e:
+                    print(e)
+                    raise(e)
 
             
 

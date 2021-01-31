@@ -74,7 +74,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
                 uwrflag = str(data['Item']['underwritingflag'])
                 
                 if(uwrflag == "no"):
-                    speakText = "Please answer the following underwriting questionnaire related to travel. Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"               
+                    speakText = "Would you like to capture your pending underwriting details?"               
 
             except BaseException as e:
                 print(e)

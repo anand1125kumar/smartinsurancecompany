@@ -632,22 +632,14 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         #####################################################################
         if(status == 'True'):
             
-            speakText = "Do you on regular basis participate in or plan to participate in any risky activities or sports with a higher than average risk of accident or injury, example motor racing, aviation, combat sports, water sports etc."
-            try:
-                dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('Policy_Details')
-                data = table.update_item(
-                    Key={
-                        'username': username
-                        },
-                        UpdateExpression="set uwrquestion1=:ca",
-                        ExpressionAttributeValues={':ca': str(uwrdecision)}         
-                                                
-                    )
 
-            except BaseException as e:
-                print(e)
-                raise(e)
+            if(uwrdecision == 'True'):                
+                speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
+
+            else:
+                speakText = "It's okay, how may I help you?"
+
+            
 
 
         else:

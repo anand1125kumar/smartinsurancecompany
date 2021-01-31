@@ -684,7 +684,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 #########################################################################################################################
 
-class answerntentHandler(AbstractRequestHandler):
+class answerIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("answerIntent")(handler_input)
 

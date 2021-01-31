@@ -752,7 +752,7 @@ class answerntentHandler(AbstractRequestHandler):
         if(status == 'True'):
             
 
-            if(answer == 'yes'):                
+                            
                 speakText = "underwriting question 2."
                 
                 try:
@@ -763,35 +763,13 @@ class answerntentHandler(AbstractRequestHandler):
                         'username': username
                         },
                         UpdateExpression="set uwrquestion1=:ca",
-                        ExpressionAttributeValues={':ca': tempfieldname}         
+                        ExpressionAttributeValues={':ca': answer}         
                                                 
                     )
 
                 except BaseException as e:
                     print(e)
                     raise(e)
-
-
-
-
-            else:
-                speakText = "It's okay, how may I help you?"
-                try:
-                    dynamodb = boto3.resource('dynamodb')
-                    table = dynamodb.Table('Temp')
-                    data = table.update_item(
-                    Key={
-                        'username': username
-                        },
-                        UpdateExpression="set tempfield=:ca",
-                        ExpressionAttributeValues={':ca': 'null'}         
-                                                
-                    )
-
-                except BaseException as e:
-                        print(e)
-                        raise(e)
-
             
 
 

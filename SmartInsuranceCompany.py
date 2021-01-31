@@ -589,7 +589,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
 
-        uwrdecision = handler_input.request_envelope.request.intent.slots['travelquestiona'].value
+        uwrdecision = handler_input.request_envelope.request.intent.slots['uwrflag'].value
         uwrdecision = uwrdecision.lower()
         
 

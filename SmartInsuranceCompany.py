@@ -663,7 +663,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                         'username': username
                         },
                         UpdateExpression="set tempfield=:ca",
-                        ExpressionAttributeValues={':ca': 'uwrans1'}         
+                        ExpressionAttributeValues={':ca': 'uwrquestion1'}         
                                                 
                     )
 

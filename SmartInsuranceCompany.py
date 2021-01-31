@@ -651,15 +651,9 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                 uwrquest = data1['Item']['uwrquest1']
                 uwrquest = str(uwrquest)
 
+                speakText = uwrquest
 
-
-
-
-
-
-
-
-                speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
+                #speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
                 
                 try:
                     dynamodb = boto3.resource('dynamodb')

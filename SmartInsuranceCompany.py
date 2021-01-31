@@ -806,12 +806,12 @@ class answerIntentHandler(AbstractRequestHandler):
 
                     uwrans = data1['Item']['uwrans'+i]
                     uwrans = str(uwrans)
-                    
+
                     if(uwrans == 'null'):
                         uwrquest = uwrans = data1['Item']['uwrquest'+i]
                         uwrquest = str(uwrquest)
                         speakText = uwrquest
-                        break
+                        
 
                         try:
                             dynamodb = boto3.resource('dynamodb')
@@ -828,6 +828,8 @@ class answerIntentHandler(AbstractRequestHandler):
                         except BaseException as e:
                             print(e)
                             raise(e)
+
+                            break
                 
 
         else:

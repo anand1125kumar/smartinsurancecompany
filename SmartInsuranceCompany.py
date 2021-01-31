@@ -749,27 +749,27 @@ class answerIntentHandler(AbstractRequestHandler):
         status = str(status)
 
 
-        try:
-            dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('Temp')
-            data1 = table.get_item(
-                Key={
-                    'username': username
-                    }
-            )
-              
-        except BaseException as e:
-            print(e)
-            raise(e)    
-
-        tempfieldname = data1['Item']['tempfield']
-        tempfieldname = str(tempfieldname)
+        
     ####################################################
 
         #####################################################################
         if(status == 'True'):
             
+                try:
+                    dynamodb = boto3.resource('dynamodb')
+                    table = dynamodb.Table('Temp')
+                    data1 = table.get_item(
+                            Key={
+                                    'username': username
+                                }
+                            )
+              
+                except BaseException as e:
+                    print(e)
+                    raise(e)    
 
+                tempfieldname = data1['Item']['tempfield']
+                tempfieldname = str(tempfieldname)
                             
                 speakText = "underwriting question 2."
                 

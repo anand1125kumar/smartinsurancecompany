@@ -830,7 +830,7 @@ class answerIntentHandler(AbstractRequestHandler):
                             print(e)
                             raise(e)
 
-                            break
+                        break
                 
 
         else:

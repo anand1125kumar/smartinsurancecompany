@@ -775,13 +775,15 @@ class answerIntentHandler(AbstractRequestHandler):
                     if(tempfieldname != 'null'):
                         
                         try:
+                            k=i-1
+                            k=str(k)
                             dynamodb = boto3.resource('dynamodb')
                             table = dynamodb.Table('Policy_Details')
                             data = table.update_item(
                                 Key={
                                         'username': username
                                     },
-                                UpdateExpression="set uwrans"+(i-1)+"=:ca",
+                                UpdateExpression="set uwrans"+k+" =:ca",
                                 ExpressionAttributeValues={':ca': answer}         
                                                 
                                 )
@@ -817,6 +819,9 @@ class answerIntentHandler(AbstractRequestHandler):
                         
 
                         try:
+
+                            j=i+1
+                            j=str(j)
                             dynamodb = boto3.resource('dynamodb')
                             table = dynamodb.Table('Temp')
                             data = table.update_item(
@@ -824,7 +829,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                     'username': username
                                     },
                             UpdateExpression="set tempfield =:ca",
-                            ExpressionAttributeValues={':ca': 'uwrquest'+(i+1)}         
+                            ExpressionAttributeValues={':ca': 'uwrquest'+j}         
                                                 
                                     )
 

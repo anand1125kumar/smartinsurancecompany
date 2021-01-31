@@ -771,7 +771,7 @@ class answerIntentHandler(AbstractRequestHandler):
                 tempfieldname = data1['Item']['tempfield']
                 tempfieldname = str(tempfieldname)
                             
-                speakText = "underwriting question 2."
+                
                 
                 try:
                     dynamodb = boto3.resource('dynamodb')
@@ -788,8 +788,29 @@ class answerIntentHandler(AbstractRequestHandler):
                 except BaseException as e:
                     print(e)
                     raise(e)
-            
 
+
+                speakText = "underwriting question 2."
+
+                for i in range(9):
+                    try:
+                        dynamodb = boto3.resource('dynamodb')
+                        table = dynamodb.Table('Policy_Details')
+                        data1 = table.get_item(
+                                Key={
+                                        'username': username
+                                    }
+                                )
+              
+                    except BaseException as e:
+                        print(e)
+                        raise(e)    
+
+                    uwrans = data1['Item']['uwrans'+i]
+                    uwrans = str(uwrans)
+                    if(uwrans == 'null'):
+                        uwrquest = uwrans = data1['Item']['uwrquest'+i]
+                        break                   
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

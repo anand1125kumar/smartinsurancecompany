@@ -762,7 +762,7 @@ class answerntentHandler(AbstractRequestHandler):
                     Key={
                         'username': username
                         },
-                        UpdateExpression="set uwrquestion1=:ca",
+                        UpdateExpression="set "+tempfieldname+"=:ca",
                         ExpressionAttributeValues={':ca': answer}         
                                                 
                     )

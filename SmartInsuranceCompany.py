@@ -628,13 +628,30 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
 
         status = data1['Item']['status']
         status = str(status)
+
+
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Policy_Details')
+            data1 = table.get_item(
+                Key={
+                    'username': username
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        uwrquest1 = data1['Item']['uwrquest1']
+        uwrquest1 = str(uwrquest1)
     ####################################################
 
         #####################################################################
         if(status == 'True'):
 
-
-            speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
+            speakText = uwrquest1
+            #speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
                 
             try:
                     dynamodb = boto3.resource('dynamodb')

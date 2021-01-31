@@ -633,7 +633,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         if(status == 'True'):
             
 
-            if(uwrdecision == 'True'):                
+            if(uwrdecision == 'yes'):                
                 speakText = "Will your occupation require you to travel or stay outside of the border of South Africa or Namibia for a period of one month each year?"
 
             else:

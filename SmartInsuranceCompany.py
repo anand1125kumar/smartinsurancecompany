@@ -580,8 +580,6 @@ class UserNameIntentHandler(AbstractRequestHandler):
 ###########################################################################################################################
 
 
-
-
 ###########################################################################################################################
 class captureunderwritingsIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -592,8 +590,6 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         uwrdecision = handler_input.request_envelope.request.intent.slots['uwrflag'].value
         uwrdecision = uwrdecision.lower()
         
-        
-
         ## Fetch username from Bancs_log table##############################
         try:
             dynamodb = boto3.resource('dynamodb')
@@ -606,7 +602,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
               
         except BaseException as e:
             print(e)
-            raise(e)    
+            raise(e)
 
         username = data1['Item']['username'] 
         print(username)
@@ -691,14 +687,13 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                         raise(e)
 
             
-
-
         else:
             speakText = "Please enter valid username and pin for successfull login."               
 
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 #########################################################################################################################
+
 
 class answerIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -771,26 +766,34 @@ class answerIntentHandler(AbstractRequestHandler):
                             
                 
                 
-                try:
-                    dynamodb = boto3.resource('dynamodb')
-                    table = dynamodb.Table('Policy_Details')
-                    data = table.update_item(
-                    Key={
-                        'username': username
-                        },
-                        UpdateExpression="set "+tempfieldname+"=:ca",
-                        ExpressionAttributeValues={':ca': answer}         
-                                                
-                    )
-
-                except BaseException as e:
-                    print(e)
-                    raise(e)
 
 
                 #speakText = "underwriting question 2."
 
                 for i in range(2,9):
+                    
+                    if(tempfieldname != 'null'):
+                        
+                        try:
+                            dynamodb = boto3.resource('dynamodb')
+                            table = dynamodb.Table('Policy_Details')
+                            data = table.update_item(
+                                Key={
+                                        'username': username
+                                    },
+                                UpdateExpression="set uwrans"+(i-1)+"=:ca",
+                                ExpressionAttributeValues={':ca': answer}         
+                                                
+                                )
+
+                        except BaseException as e:
+                            print(e)
+                            raise(e)
+
+
+
+
+
                     try:
                         dynamodb = boto3.resource('dynamodb')
                         table = dynamodb.Table('Policy_Details')
@@ -821,7 +824,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                     'username': username
                                     },
                             UpdateExpression="set tempfield =:ca",
-                            ExpressionAttributeValues={':ca': 'uwrquest'+i}         
+                            ExpressionAttributeValues={':ca': 'uwrquest'+(i+1)}         
                                                 
                                     )
 

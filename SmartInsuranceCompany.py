@@ -684,6 +684,129 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 #########################################################################################################################
 
+class answerntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("answerIntent")(handler_input)
+
+    def handle(self, handler_input):
+
+        answer = handler_input.request_envelope.request.intent.slots['ans'].value
+        answer = answer.lower()
+        
+        
+
+        ## Fetch username from Bancs_log table##############################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Log')
+            data1 = table.get_item(
+                Key={
+                    'SerialNumber': '1'
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        username = data1['Item']['username'] 
+        print(username)
+
+
+        ##### FETCH login status ########################
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Temp')
+            data1 = table.get_item(
+                Key={
+                    'username': username
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        status = data1['Item']['status']
+        status = str(status)
+
+
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Temp')
+            data1 = table.get_item(
+                Key={
+                    'username': username
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)    
+
+        tempfieldname = data1['Item']['tempfield']
+        tempfieldname = str(tempfieldname)
+    ####################################################
+
+        #####################################################################
+        if(status == 'True'):
+            
+
+            if(answer == 'yes'):                
+                speakText = "underwriting question 2."
+                
+                try:
+                    dynamodb = boto3.resource('dynamodb')
+                    table = dynamodb.Table('Policy_Details')
+                    data = table.update_item(
+                    Key={
+                        'username': username
+                        },
+                        UpdateExpression="set uwrquestion1=:ca",
+                        ExpressionAttributeValues={':ca': tempfieldname}         
+                                                
+                    )
+
+                except BaseException as e:
+                    print(e)
+                    raise(e)
+
+
+
+
+            else:
+                speakText = "It's okay, how may I help you?"
+                try:
+                    dynamodb = boto3.resource('dynamodb')
+                    table = dynamodb.Table('Temp')
+                    data = table.update_item(
+                    Key={
+                        'username': username
+                        },
+                        UpdateExpression="set tempfield=:ca",
+                        ExpressionAttributeValues={':ca': 'null'}         
+                                                
+                    )
+
+                except BaseException as e:
+                        print(e)
+                        raise(e)
+
+            
+
+
+        else:
+            speakText = "Please enter valid username and pin for successfull login."               
+
+        handler_input.response_builder.speak(speakText).set_should_end_session(False)
+        return handler_input.response_builder.response
+#########################################################################################################################
+
+
+
+
+
+
 
 
 
@@ -1293,6 +1416,7 @@ sb.add_request_handler(ViewCoverAmountIntentHandler())
 sb.add_request_handler(IncreaseCoverAmountIntentHandler())
 sb.add_request_handler(DecreaseCoverAmountIntentHandler())
 sb.add_request_handler(RegisterUserIntentHandler())
+sb.add_request_handler(answerIntentHandler())
 sb.add_request_handler(RegisterUserNameIntentHandler())
 sb.add_request_handler(RegisterPasswordIntentHandler())
 sb.add_request_handler(RegisterFullNameIntentHandler())

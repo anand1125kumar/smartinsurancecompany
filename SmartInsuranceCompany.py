@@ -790,7 +790,7 @@ class answerIntentHandler(AbstractRequestHandler):
                     raise(e)
 
 
-                speakText = "underwriting question 2."
+                #speakText = "underwriting question 2."
 
                 for i in range(9):
                     try:

@@ -648,8 +648,8 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                 print(e)
                 raise(e)    
 
-                status = data1['Item']['status']
-                status = str(status)
+                uwrquest = data1['Item']['uwrquest1']
+                uwrquest = str(uwrquest)
 
 
 

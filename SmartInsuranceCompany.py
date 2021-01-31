@@ -782,7 +782,7 @@ class answerIntentHandler(AbstractRequestHandler):
                             Key={
                                     'username': username
                                 },
-                            UpdateExpression="set uwrans"+k+" =:ca",
+                            UpdateExpression="set uwrans1 =:ca",
                             ExpressionAttributeValues={':ca': answer}         
                                                 
                             )
@@ -815,8 +815,6 @@ class answerIntentHandler(AbstractRequestHandler):
 
                         try:
 
-                            j=i+1
-                            j=str(j)
                             dynamodb = boto3.resource('dynamodb')
                             table = dynamodb.Table('Temp')
                             data = table.update_item(
@@ -824,7 +822,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                     'username': username
                                     },
                             UpdateExpression="set tempfield =:ca",
-                            ExpressionAttributeValues={':ca': 'uwrquest'+j}         
+                            ExpressionAttributeValues={':ca': 'uwrquest'+i}         
                                                 
                                     )
 

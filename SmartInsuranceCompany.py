@@ -782,7 +782,7 @@ class answerIntentHandler(AbstractRequestHandler):
                             Key={
                                     'username': username
                                 },
-                            UpdateExpression="set uwrans1 =:ca",
+                            UpdateExpression="set uwrans"+k+" =:ca",
                             ExpressionAttributeValues={':ca': answer}         
                                                 
                             )

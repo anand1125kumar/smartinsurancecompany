@@ -809,13 +809,10 @@ class answerIntentHandler(AbstractRequestHandler):
                         speakText = uwrq
 
                         break
-
-                                            
-
-                    
+                                           
                        
                     
-                speakText = "Your underwriting details have been saved successfully, thank you!"
+                        speakText = "Your underwriting details have been saved successfully, thank you!"
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

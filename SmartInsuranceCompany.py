@@ -750,7 +750,7 @@ class answerIntentHandler(AbstractRequestHandler):
             
             #speakText = "underwriting question 2."
 
-                for i in range(1,9):
+                for i in range(1,10):
 
 
 
@@ -803,13 +803,13 @@ class answerIntentHandler(AbstractRequestHandler):
                         except BaseException as e:
                             print(e)
                             raise(e)    
-                        xx= 'uwrquest'+str(i)
+                        xx= 'uwrquest'+str(i+1)
                         uwrq = data1['Item'][xx]
                         uwrq = str(uwrq)
                         speakText = uwrq
 
                         break
-                                           
+
                        
                     
                         speakText = "Your underwriting details have been saved successfully, thank you!"

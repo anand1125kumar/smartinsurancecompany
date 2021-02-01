@@ -804,7 +804,7 @@ class answerIntentHandler(AbstractRequestHandler):
                     except BaseException as e:
                         print(e)
                         raise(e)    
-                    xx= 'uwrquest'+str(2)
+                    xx= 'uwrquest'+str(i)
                     uwrq = data1['Item'][xx]
                     uwrq = str(uwrq)
                     speakText = uwrq

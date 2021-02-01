@@ -664,6 +664,7 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
                                                 
                         )
 
+
                 except BaseException as e:
                         print(e)
                         raise(e)
@@ -753,7 +754,7 @@ class answerIntentHandler(AbstractRequestHandler):
             
             #speakText = "underwriting question 2."
 
-                for i in range(1,11):
+                for i in range(1,20):
 
                     try:
                         dynamodb = boto3.resource('dynamodb')
@@ -791,7 +792,7 @@ class answerIntentHandler(AbstractRequestHandler):
                             print(e)
                             raise(e)
 
-                        if(i != 10):
+                        if(i != 19):
                             try:
                                 dynamodb = boto3.resource('dynamodb')
                                 table = dynamodb.Table('Policy_Details')

@@ -809,11 +809,11 @@ class answerIntentHandler(AbstractRequestHandler):
                     jj = 'uwrquest'+i
                     jj = str(jj)
 
-                    uwrans = data1['Item'][kk]
+                    uwrans = data1['Item']['uwrans2']
                     uwrans = str(uwrans)
 
                     if(uwrans == 'null'):
-                        uwrquest = data1['Item'][jj]
+                        uwrquest = data1['Item']['uwrquest2']
                         uwrquest = str(uwrquest)
                         speakText = uwrquest
                         
@@ -827,7 +827,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                     'username': username
                                     },
                             UpdateExpression="set tempfield =:ca",
-                            ExpressionAttributeValues={':ca': kk}         
+                            ExpressionAttributeValues={':ca': 'uwrquest2'}         
                                                 
                                     )
 

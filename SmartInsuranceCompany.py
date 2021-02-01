@@ -74,7 +74,10 @@ class appNumberIntentHandler(AbstractRequestHandler):
                 uwrflag = str(data['Item']['underwritingflag'])
                 
                 if(uwrflag == "no"):
-                    speakText = "Would you like to capture your pending underwriting details?"               
+                    speakText = "Would you like to capture your pending underwriting details?"
+
+                else:
+                    speakText = "How may I help you"             
 
             except BaseException as e:
                 print(e)

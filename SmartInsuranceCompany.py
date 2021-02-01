@@ -817,7 +817,7 @@ class answerIntentHandler(AbstractRequestHandler):
 
                        
                     
-                    speakText = "Your underwriting details have been saved successfully, thank you!"
+                    
                     try:
                         
                         k=str(i)
@@ -835,6 +835,75 @@ class answerIntentHandler(AbstractRequestHandler):
                     except BaseException as e:
                             print(e)
                             raise(e)
+
+                ########## Test Needed ########
+                    for m in range(1,20):
+                        try:
+                            dynamodb = boto3.resource('dynamodb')
+                            table = dynamodb.Table('Policy_Details')
+                            data1 = table.get_item(
+                                    Key={
+                                            'username': username
+                                        }
+                                    )
+              
+                        except BaseException as e:
+                            print(e)
+                            raise(e)    
+
+                        uwrquests = data1['Item']['uwrquest'+str(m)]
+                        uwrquests = str(uwrquests)
+
+                        if 'Dengue' in uwrquests:
+                            uwranss = data1['Item']['uwrans'+str(m)]
+                            uwranss = str(uwranss)
+                            if(uwranss == 'yes'):
+                                testneeded = ["Dengue Test"]
+
+                        if 'Cholesterol' in uwrquests:
+                            uwranss = data1['Item']['uwrans'+str(m)]
+                            uwranss = str(uwranss)
+                            if(uwranss == 'yes'):
+                                testneeded.append("Cholesterol Test")
+
+                        if 'Blood Pressure' in uwrquests:
+                            uwranss = data1['Item']['uwrans'+str(m)]
+                            uwranss = str(uwranss)
+                            if(uwranss == 'yes'):
+                                testneeded.append("Blood Pressure Test")
+
+
+                        if 'Heart Attack' in uwrquests:
+                            uwranss = data1['Item']['uwrans'+str(m)]
+                            uwranss = str(uwranss)
+                            if(uwranss == 'yes'):
+                                testneeded.append("Cardio Test")
+
+
+                        if 'Diabetes' in uwrquests:
+                            uwranss = data1['Item']['uwrans'+str(m)]
+                            uwranss = str(uwranss)
+                            if(uwranss == 'yes'):
+                                testneeded.append("Diabetes Test")
+
+
+                        if 'Asthma' in uwrquests:
+                            uwranss = data1['Item']['uwrans'+str(m)]
+                            uwranss = str(uwranss)
+                            if(uwranss == 'yes'):
+                                testneeded.append("Asthma Test")
+
+                        if 'HIV' in uwrquests:
+                            uwranss = data1['Item']['uwrans'+str(m)]
+                            uwranss = str(uwranss)
+                            if(uwranss == 'yes'):
+                                testneeded.append("HIV Test")
+
+
+                    speakText = "Your underwriting details have been saved successfully, thank you!, you need to undergo following medical tests: "+testneeded
+
+
+
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

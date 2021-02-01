@@ -793,23 +793,23 @@ class answerIntentHandler(AbstractRequestHandler):
                             print(e)
                             raise(e)
 
-
-                        try:
-                            dynamodb = boto3.resource('dynamodb')
-                            table = dynamodb.Table('Policy_Details')
-                            data1 = table.get_item(
-                                Key={
-                                        'username': username
-                                    }
-                                )
+                        if(i == 11):
+                            try:
+                                dynamodb = boto3.resource('dynamodb')
+                                table = dynamodb.Table('Policy_Details')
+                                data1 = table.get_item(
+                                    Key={
+                                            'username': username
+                                        }
+                                    )
               
-                        except BaseException as e:
-                            print(e)
-                            raise(e)    
-                        xx= 'uwrquest'+str(i+1)
-                        uwrq = data1['Item'][xx]
-                        uwrq = str(uwrq)
-                        speakText = uwrq
+                            except BaseException as e:
+                                print(e)
+                                raise(e)    
+                            xx= 'uwrquest'+str(i+1)
+                            uwrq = data1['Item'][xx]
+                            uwrq = str(uwrq)
+                            speakText = uwrq
 
                         break
 

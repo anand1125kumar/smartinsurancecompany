@@ -811,6 +811,9 @@ class answerIntentHandler(AbstractRequestHandler):
                             uwrq = str(uwrq)
                             speakText = uwrq
 
+                        else:
+                            speakText = "Your underwriting details have been saved successfully, thank you!"
+
                         break
 
                        

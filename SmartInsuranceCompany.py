@@ -830,7 +830,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                                 
                                 )
 
-                        except BaseException as e:
+                    except BaseException as e:
                             print(e)
                             raise(e)
 

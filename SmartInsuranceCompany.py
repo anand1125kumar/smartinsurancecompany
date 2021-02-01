@@ -817,7 +817,7 @@ class answerIntentHandler(AbstractRequestHandler):
 
                        
                         if(i == 19):
-                            speakText = "Your underwriting details have been saved successfully, thank you!"
+                            
                             try:
                         
                             
@@ -836,21 +836,28 @@ class answerIntentHandler(AbstractRequestHandler):
                                     print(e)
                                     raise(e)
 
-                            try:
-                                dynamodb = boto3.resource('dynamodb')
-                                table = dynamodb.Table('Policy_Details')
-                                data1 = table.get_item(
-                                    Key={
-                                            'username': username
-                                        }
-                                    )
-              
-                            except BaseException as e:
-                                print(e)
-                                raise(e)    
 
-                            uwraans = data1['Item']['uwrans'+str(i)]
-                            uwraans = str(uwraans)
+                            for m in range(1,19):
+
+                                try:
+                                    dynamodb = boto3.resource('dynamodb')
+                                    table = dynamodb.Table('Policy_Details')
+                                    data1 = table.get_item(
+                                        Key={
+                                                'username': username
+                                            }
+                                        )
+              
+                                except BaseException as e:
+                                    print(e)
+                                    raise(e) 
+
+                                uwrquestss = data1['Item']['uwrquest'+str(m)]
+
+                                uwraanss = data1['Item']['uwrans'+str(m)]
+                                uwraanss = str(uwraanss)
+
+                            speakText = "Your underwriting details have been saved successfully, thank you!"
 
 
 

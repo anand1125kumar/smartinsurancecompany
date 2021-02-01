@@ -836,7 +836,11 @@ class answerIntentHandler(AbstractRequestHandler):
                             raise(e)
 
                         break
-                speakText = "Please wait a while"
+
+                    else:
+                        speak("Your underwriting details have been successfully saved")
+                    
+                speakText = "Your underwriting details have been successfully saved"
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

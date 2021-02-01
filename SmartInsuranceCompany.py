@@ -791,10 +791,35 @@ class answerIntentHandler(AbstractRequestHandler):
                         print(e)
                         raise(e)
 
+
+                    try:
+                        dynamodb = boto3.resource('dynamodb')
+                        table = dynamodb.Table('Policy_Details')
+                        data1 = table.get_item(
+                            Key={
+                                    'username': username
+                                }
+                            )
+              
+                    except BaseException as e:
+                        print(e)
+                        raise(e)    
+
+                    uwrq = data1['Item']['uwrquest'+i]
+                    uwrq = str(uwrq)
+                    speakText = uwrq
+
+
+
+
+
+
+                    
+
                     if(i == 3):
                         break
                     
-                speakText = "Your underwriting details have been successfully saved"
+                #speakText = "Your underwriting details have been saved successfully"
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

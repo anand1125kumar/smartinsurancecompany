@@ -816,6 +816,23 @@ class answerIntentHandler(AbstractRequestHandler):
                        
                     
                     speakText = "Your underwriting details have been saved successfully, thank you!"
+                    try:
+                        
+                            k=str(i)
+                            dynamodb = boto3.resource('dynamodb')
+                            table = dynamodb.Table('Policy_Details')
+                            data = table.update_item(
+                                Key={
+                                        'username': username
+                                    },
+                                UpdateExpression="set underwritingflag =:ca",
+                                ExpressionAttributeValues={':ca': 'yes'}         
+                                                
+                                )
+
+                        except BaseException as e:
+                            print(e)
+                            raise(e)
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

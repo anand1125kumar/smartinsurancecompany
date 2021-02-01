@@ -859,22 +859,22 @@ class answerIntentHandler(AbstractRequestHandler):
                                 uwraanss = str(uwraanss)
 
                                 if 'Cholesterol' in uwrquestss and uwraanss == 'yes':
-                                    testneeded+", Cholesterol Test"
+                                    testneeded = testneeded+", Cholesterol Test"
 
                                 if 'Dengue' in uwrquestss and uwraanss == 'yes':
-                                    testneeded+", Dengue Test"
+                                    testneeded = testneeded+", Dengue Test"
 
                                 if 'Diabetes' in uwrquestss and uwraanss == 'yes':
-                                    testneeded+", Diabetes Test"
+                                    testneeded = testneeded+", Diabetes Test"
 
                                 if 'blood pressure' in uwrquestss and uwraanss == 'yes':
-                                    testneeded+", Blood pressure Test"
+                                    testneeded = testneeded+", Blood pressure Test"
 
                                 if 'Asthma' in uwrquestss and uwraanss == 'yes':
-                                    testneeded+", Asthma Test"
+                                    testneeded = testneeded+", Asthma Test"
 
                                 if 'HIV' in uwrquestss and uwraanss == 'yes':
-                                    testneeded+", HIV Test"
+                                    testneeded = testneeded+", HIV Test"
 
                             speakText = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded
 

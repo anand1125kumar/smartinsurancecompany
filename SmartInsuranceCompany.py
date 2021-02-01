@@ -748,78 +748,74 @@ class answerIntentHandler(AbstractRequestHandler):
         #####################################################################
         if(status == 'True'):
             
-                try:
-                    dynamodb = boto3.resource('dynamodb')
-                    table = dynamodb.Table('Temp')
-                    data1 = table.get_item(
-                            Key={
-                                    'username': username
-                                }
-                            )
-              
-                except BaseException as e:
-                    print(e)
-                    raise(e)    
+            #speakText = "underwriting question 2."
 
-                tempfieldname = data1['Item']['tempfield']
-                tempfieldname = str(tempfieldname)
-                            
-                
-                
+                for i in range(1,9):
 
-
-                #speakText = "underwriting question 2."
-
-                for i in range(2,9):
-                    
-                                         
-                    try:
-                        k=i-1
-                        k=str(k)
-                        dynamodb = boto3.resource('dynamodb')
-                        table = dynamodb.Table('Policy_Details')
-                        data = table.update_item(
-                            Key={
-                                    'username': username
-                                },
-                            UpdateExpression="set uwrans"+k+" =:ca",
-                            ExpressionAttributeValues={':ca': answer}         
-                                                
-                            )
-
-                    except BaseException as e:
-                        print(e)
-                        raise(e)
 
 
                     try:
                         dynamodb = boto3.resource('dynamodb')
                         table = dynamodb.Table('Policy_Details')
                         data1 = table.get_item(
-                            Key={
-                                    'username': username
-                                }
-                            )
+                                Key={
+                                        'username': username
+                                    }
+                                )
               
                     except BaseException as e:
                         print(e)
                         raise(e)    
-                    xx= 'uwrquest'+str(i)
-                    uwrq = data1['Item'][xx]
-                    uwrq = str(uwrq)
-                    speakText = uwrq
+
+                    uwraans = data1['Item']['uwrans'+str(i)]
+                    uwraans = str(uwraans)
+
+                    if(uwraans == 'null'):
+               
+                        try:
+                        
+                            k=str(i)
+                            dynamodb = boto3.resource('dynamodb')
+                            table = dynamodb.Table('Policy_Details')
+                            data = table.update_item(
+                                Key={
+                                        'username': username
+                                    },
+                                UpdateExpression="set uwrans"+k+" =:ca",
+                                ExpressionAttributeValues={':ca': answer}         
+                                                
+                                )
+
+                        except BaseException as e:
+                            print(e)
+                            raise(e)
 
 
+                        try:
+                            dynamodb = boto3.resource('dynamodb')
+                            table = dynamodb.Table('Policy_Details')
+                            data1 = table.get_item(
+                                Key={
+                                        'username': username
+                                    }
+                                )
+              
+                        except BaseException as e:
+                            print(e)
+                            raise(e)    
+                        xx= 'uwrquest'+str(i)
+                        uwrq = data1['Item'][xx]
+                        uwrq = str(uwrq)
+                        speakText = uwrq
 
-
-
-
-                    
-
-                    if(i == 3):
                         break
+
+                                            
+
                     
-                #speakText = "Your underwriting details have been saved successfully"
+                       
+                    
+                speakText = "Your underwriting details have been saved successfully, thank you!"
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

@@ -755,8 +755,6 @@ class answerIntentHandler(AbstractRequestHandler):
 
                 for i in range(1,11):
 
-
-
                     try:
                         dynamodb = boto3.resource('dynamodb')
                         table = dynamodb.Table('Policy_Details')
@@ -793,7 +791,7 @@ class answerIntentHandler(AbstractRequestHandler):
                             print(e)
                             raise(e)
 
-                        if(i != 11):
+                        if(i != 10):
                             try:
                                 dynamodb = boto3.resource('dynamodb')
                                 table = dynamodb.Table('Policy_Details')
@@ -843,14 +841,6 @@ class answerIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speakText).set_should_end_session(False)
         return handler_input.response_builder.response
 #########################################################################################################################
-
-
-
-
-
-
-
-
 
 ######################################## 10-Oct-2020  #####################################################
 class PremiumAmountIntentHandler(AbstractRequestHandler):

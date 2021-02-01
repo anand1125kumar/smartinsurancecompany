@@ -836,6 +836,26 @@ class answerIntentHandler(AbstractRequestHandler):
                                     print(e)
                                     raise(e)
 
+                            try:
+                                dynamodb = boto3.resource('dynamodb')
+                                table = dynamodb.Table('Policy_Details')
+                                data1 = table.get_item(
+                                    Key={
+                                            'username': username
+                                        }
+                                    )
+              
+                            except BaseException as e:
+                                print(e)
+                                raise(e)    
+
+                            uwraans = data1['Item']['uwrans'+str(i)]
+                            uwraans = str(uwraans)
+
+
+
+                            
+
                         break
 
                     

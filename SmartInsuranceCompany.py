@@ -77,7 +77,7 @@ class appNumberIntentHandler(AbstractRequestHandler):
                     speakText = "Would you like to capture your pending underwriting details?"
 
                 else:
-                    speakText = "How may I help you"             
+                    speakText = "How may I help you?"             
 
             except BaseException as e:
                 print(e)

@@ -816,25 +816,25 @@ class answerIntentHandler(AbstractRequestHandler):
                         break
 
                        
-                    
-                    speakText = "Your underwriting details have been saved successfully, thank you!"
-                    try:
+                    if(i == 19):
+                        speakText = "Your underwriting details have been saved successfully, thank you!"
+                        try:
                         
-                        k=str(i)
-                        dynamodb = boto3.resource('dynamodb')
-                        table = dynamodb.Table('Policy_Details')
-                        data = table.update_item(
-                            Key={
-                                    'username': username
-                                },
-                            UpdateExpression="set underwritingflag =:ca",
-                            ExpressionAttributeValues={':ca': 'yes'}         
+                            k=str(i)
+                            dynamodb = boto3.resource('dynamodb')
+                            table = dynamodb.Table('Policy_Details')
+                            data = table.update_item(
+                                Key={
+                                        'username': username
+                                    },
+                                UpdateExpression="set underwritingflag =:ca",
+                                ExpressionAttributeValues={':ca': 'yes'}         
                                                 
-                            )
+                                )
 
-                    except BaseException as e:
-                            print(e)
-                            raise(e)
+                        except BaseException as e:
+                                print(e)
+                                raise(e)
 
                     
 

@@ -838,7 +838,7 @@ class answerIntentHandler(AbstractRequestHandler):
                         break
 
                     else:
-                        speakText = "Your underwriting details have been successfully saved"
+                        speakText = "Your underwriting details have been saved successfully"
                     
                 speakText = "Your underwriting details have been successfully saved"
 

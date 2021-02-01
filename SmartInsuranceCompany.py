@@ -836,7 +836,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                     print(e)
                                     raise(e)
 
-                            testneeded = [""]
+                            testneeded = ""
                             for m in range(1,19):
 
                                 try:
@@ -859,24 +859,24 @@ class answerIntentHandler(AbstractRequestHandler):
                                 uwraanss = str(uwraanss)
 
                                 if 'Cholesterol' in uwrquestss and uwraanss == 'yes':
-                                    testneeded.append("Cholesterol Test")
+                                    testneeded+", Cholesterol Test"
 
                                 if 'Dengue' in uwrquestss and uwraanss == 'yes':
-                                    testneeded.append("Dengue Test")
+                                    testneeded+", Dengue Test"
 
                                 if 'Diabetes' in uwrquestss and uwraanss == 'yes':
-                                    testneeded.append("Diabetes Test")
+                                    testneeded+", Diabetes Test"
 
                                 if 'blood pressure' in uwrquestss and uwraanss == 'yes':
-                                    testneeded.append("Blood pressure Test")
+                                    testneeded+", Blood pressure Test"
 
                                 if 'Asthma' in uwrquestss and uwraanss == 'yes':
-                                    testneeded.append("Asthma Test")
+                                    testneeded+", Asthma Test"
 
                                 if 'HIV' in uwrquestss and uwraanss == 'yes':
-                                    testneeded.append("HIV Test")
+                                    testneeded+", HIV Test"
 
-                            speakText = "Your underwriting details have been saved successfully, thank you!"+testneeded
+                            speakText = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded
 
 
 

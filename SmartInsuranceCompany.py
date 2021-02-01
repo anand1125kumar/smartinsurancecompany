@@ -793,7 +793,7 @@ class answerIntentHandler(AbstractRequestHandler):
                             print(e)
                             raise(e)
 
-                        if(i == 11):
+                        if(i != 11):
                             try:
                                 dynamodb = boto3.resource('dynamodb')
                                 table = dynamodb.Table('Policy_Details')

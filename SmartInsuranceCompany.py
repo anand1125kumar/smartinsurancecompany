@@ -812,7 +812,7 @@ class answerIntentHandler(AbstractRequestHandler):
                     uwrans = data1['Item']['uwrans2']
                     uwrans = str(uwrans)
 
-                    if(uwrans == 'null'):
+                    if(uwrans == null):
                         uwrquest = data1['Item']['uwrquest2']
                         uwrquest = str(uwrquest)
                         speakText = uwrquest
@@ -836,7 +836,7 @@ class answerIntentHandler(AbstractRequestHandler):
                             raise(e)
 
                         break
-                
+                speakText = "Please wait a while"
 
         else:
             speakText = "Please enter valid username and pin for successfull login."               

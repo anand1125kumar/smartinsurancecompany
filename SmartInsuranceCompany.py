@@ -836,7 +836,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                     print(e)
                                     raise(e)
 
-
+                            testneeded = [""]
                             for m in range(1,19):
 
                                 try:
@@ -858,7 +858,25 @@ class answerIntentHandler(AbstractRequestHandler):
                                 uwraanss = data1['Item']['uwrans'+str(m)]
                                 uwraanss = str(uwraanss)
 
-                            speakText = "Your underwriting details have been saved successfully, thank you!"
+                                if 'Cholesterol' in uwrquestss and uwraanss == 'yes':
+                                    testneeded.append("Cholesterol Test")
+
+                                if 'Dengue' in uwrquestss and uwraanss == 'yes':
+                                    testneeded.append("Dengue Test")
+
+                                if 'Diabetes' in uwrquestss and uwraanss == 'yes':
+                                    testneeded.append("Diabetes Test")
+
+                                if 'blood pressure' in uwrquestss and uwraanss == 'yes':
+                                    testneeded.append("Blood pressure Test")
+
+                                if 'Asthma' in uwrquestss and uwraanss == 'yes':
+                                    testneeded.append("Asthma Test")
+
+                                if 'HIV' in uwrquestss and uwraanss == 'yes':
+                                    testneeded.append("HIV Test")
+
+                            speakText = "Your underwriting details have been saved successfully, thank you!"+testneeded
 
 
 

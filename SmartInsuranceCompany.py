@@ -791,54 +791,8 @@ class answerIntentHandler(AbstractRequestHandler):
                         print(e)
                         raise(e)
 
-                    try:
-                        dynamodb = boto3.resource('dynamodb')
-                        table = dynamodb.Table('Policy_Details')
-                        data1 = table.get_item(
-                                Key={
-                                        'username': username
-                                    }
-                                )
-              
-                    except BaseException as e:
-                        print(e)
-                        raise(e)    
-
-                    kk = 'uwrans'+i
-                    kk = str(kk)
-                    jj = 'uwrquest'+i
-                    jj = str(jj)
-
-                    uwrans = data1['Item']['uwrans2']
-                    uwrans = str(uwrans)
-
-                    if(uwrans == null):
-                        uwrquest = data1['Item']['uwrquest2']
-                        uwrquest = str(uwrquest)
-                        speakText = uwrquest
-                        
-
-                        try:
-
-                            dynamodb = boto3.resource('dynamodb')
-                            table = dynamodb.Table('Temp')
-                            data = table.update_item(
-                            Key={
-                                    'username': username
-                                    },
-                            UpdateExpression="set tempfield =:ca",
-                            ExpressionAttributeValues={':ca': 'uwrquest2'}         
-                                                
-                                    )
-
-                        except BaseException as e:
-                            print(e)
-                            raise(e)
-
+                    if(i == 3):
                         break
-
-                    else:
-                        speakText = "Your underwriting details have been saved successfully"
                     
                 speakText = "Your underwriting details have been successfully saved"
 

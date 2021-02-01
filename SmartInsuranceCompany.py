@@ -853,6 +853,7 @@ class answerIntentHandler(AbstractRequestHandler):
                                     raise(e) 
 
                                 uwrquestss = data1['Item']['uwrquest'+str(m)]
+                                uwrquestss = str(uwrquestss)
 
                                 uwraanss = data1['Item']['uwrans'+str(m)]
                                 uwraanss = str(uwraanss)

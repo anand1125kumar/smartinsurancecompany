@@ -1489,6 +1489,8 @@ class LogoutIntentHandler(AbstractRequestHandler):
         return is_intent_name("LogoutIntent")(handler_input)
 
     def handle(self, handler_input):
+
+
         #usname = Intent.slots.username.value
 
         ## Fetch username from Bancs_log table##############################
@@ -1505,30 +1507,28 @@ class LogoutIntentHandler(AbstractRequestHandler):
             print(e)
             raise(e)    
 
-        username = data1['Item']['username']
-        username = str(username)
+        username = data1['Item']['username'] 
 
         #####################################################################
-
 
         try:
             dynamodb = boto3.resource('dynamodb')
             table = dynamodb.Table('Temp')
-            data3 = table.put_item(
+            data = table.put_item(
                 Item={
-                       'SerialNumber': '1',
-                       'status': 'false'
+                       'username': username,
+                       'status':   'false'
                     }
               )
         except BaseException as e:
             print(e)
-            raise(e)
+            raise(e) 
 
             
         try:
             dynamodb = boto3.resource('dynamodb')
             table = dynamodb.Table('Log')
-            data3 = table.put_item(
+            data = table.put_item(
                 Item={
                        'SerialNumber': '1',
                        'username': 'null'

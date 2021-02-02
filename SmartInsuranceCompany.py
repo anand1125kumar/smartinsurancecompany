@@ -183,12 +183,6 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
 
 
 
-            
-
-            
-
-
-
             try:
                 dynamodb = boto3.resource('dynamodb')
                 table = dynamodb.Table('Policy_Details')

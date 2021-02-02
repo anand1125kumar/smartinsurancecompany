@@ -1510,23 +1510,19 @@ class LogoutIntentHandler(AbstractRequestHandler):
 
         #####################################################################
 
+
         try:
             dynamodb = boto3.resource('dynamodb')
             table = dynamodb.Table('Temp')
-            data2 = table.update_item(
-                Key={
-                    'username': username
-                    },
-                    UpdateExpression="set status=:pn",
-                    ExpressionAttributeValues={':pn': 'false'}         
-                                                
-                )
-
+            data3 = table.put_item(
+                Item={
+                       'SerialNumber': '1',
+                       'status': 'false'
+                    }
+              )
         except BaseException as e:
             print(e)
             raise(e)
-
-        
 
             
         try:

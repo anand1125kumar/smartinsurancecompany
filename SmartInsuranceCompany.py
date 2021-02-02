@@ -1095,7 +1095,8 @@ class PINIntentHandler(AbstractRequestHandler):
                 data = table.put_item(
                     Item={
                         'username': username,
-                        'status':   loginFlag
+                        'status':   loginFlag,
+                        'tempfield': 'null'
                         }
                     )
             except BaseException as e:
@@ -1490,35 +1491,22 @@ class LogoutIntentHandler(AbstractRequestHandler):
 
         #####################################################################
 
-        #try:
-            #dynamodb = boto3.resource('dynamodb')
-            #table = dynamodb.Table('Temp')
-            #data = table.put_item(
-                #Item={
-                       #'username': username,
-                       #'status':   'false'
-                    #}
-              #)
-        #except BaseException as e:
-            #print(e)
-            #raise(e)
-
-
         try:
             dynamodb = boto3.resource('dynamodb')
-            table2 = dynamodb.Table('Temp')
-            data2 = table2.update_item(
-                Key={
-                    'username': username
-                    },
-                    UpdateExpression="set status=:fn",
-                    ExpressionAttributeValues={':fn': 'false'}         
-                                                
-                )
-
+            table = dynamodb.Table('Temp')
+            data = table.put_item(
+                Item={
+                       'username': username,
+                       'status':   'false',
+                       'tempfield': 'null'
+                    }
+              )
         except BaseException as e:
             print(e)
             raise(e)
+
+
+        
 
             
         try:

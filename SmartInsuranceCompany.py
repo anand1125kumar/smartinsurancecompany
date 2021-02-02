@@ -552,11 +552,37 @@ class searchappIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         ## Fetch username from Bancs_log table##############################
+        
 
-        speak_text = "Please tell your app number"
+
+        try:
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Log')
+            data1 = table.get_item(
+                Key={
+                    'SerialNumber': '1'
+                    }
+            )
+              
+        except BaseException as e:
+            print(e)
+            raise(e)
+
+        username = data1['Item']['username']
+        username = str(username)
+        #print(username)
+
+        if(username != 'null'):
+            
+        ##### FETCH login status ########################
+                       
+            speak_text = "Please tell your app number"         
+
+        else:
+            speak_text = "Please login to Smart Insurance Company portal"   
 
         
-        handler_input.response_builder.speak(speech_text).set_should_end_session(False)
+        handler_input.response_builder.speak(speak_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
 

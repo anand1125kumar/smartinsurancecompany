@@ -1088,7 +1088,7 @@ class PINIntentHandler(AbstractRequestHandler):
                 raise(e)
 
         else:
-            speech_text = "Hello " + data['Item']['fullname'] + ".   You have successfully logged in TCS Bancs application,    hope you are doing great, your current location is " + data['Item']['city'] + ".   How may I help you?"
+            speech_text = "Hello " + data['Item']['fullname'] + ". You have successfully logged in Smart Insurance Company portal, hope you are doing great, your current location is " + data['Item']['city'] + ".   How may I help you?"
             loginFlag = 'True'
         
             try:

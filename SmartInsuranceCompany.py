@@ -521,7 +521,7 @@ class RegisterInsuranceTermIntentHandler(AbstractRequestHandler):
 
 
 
-        handler_input.response_builder.speak("Congratulations, you have successfully created an app from world leading insurance company today, the  "+str(today)+", we will provide the best in class insurance services, your app number is "+str('P'+policynumber)+", your premium amount is "+str(premiumamount)+" rupees and your next premium due is on "+str(nextduedate)+", Please let me know if you need any other services. Thank you").set_should_end_session(False)
+        handler_input.response_builder.speak("Congratulations, you have successfully created an app from world leading insurance company today, the  "+str(today)+", we will provide the best in class insurance services, your app number is P"+str(policynumber)+", your premium amount is "+str(premiumamount)+" rupees and your next premium due is on "+str(nextduedate)+", Please let me know if you need any other services. Thank you").set_should_end_session(False)
         return handler_input.response_builder.response
 
 ########################################################################################################################

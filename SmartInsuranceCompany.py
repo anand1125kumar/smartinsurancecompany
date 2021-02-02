@@ -585,9 +585,9 @@ class searchappIntentHandler(AbstractRequestHandler):
                 speech_text = "Please tell your app number"
 
             else:
-                speak_text = "Please login with your credentials"
+                speak_text = "Please login to Smart Insurance Company portal"
         else:
-            speak_text = "Please login with your credentials"   
+            speak_text = "Please login to Smart Insurance Company portal"   
 
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)

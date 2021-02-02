@@ -1490,18 +1490,35 @@ class LogoutIntentHandler(AbstractRequestHandler):
 
         #####################################################################
 
+        #try:
+            #dynamodb = boto3.resource('dynamodb')
+            #table = dynamodb.Table('Temp')
+            #data = table.put_item(
+                #Item={
+                       #'username': username,
+                       #'status':   'false'
+                    #}
+              #)
+        #except BaseException as e:
+            #print(e)
+            #raise(e)
+
+
         try:
             dynamodb = boto3.resource('dynamodb')
             table = dynamodb.Table('Temp')
-            data = table.put_item(
-                Item={
-                       'username': username,
-                       'status':   'false'
-                    }
-              )
+            data = table.update_item(
+                Key={
+                    'username': username
+                    },
+                    UpdateExpression="set status=:fn",
+                    ExpressionAttributeValues={':fn': 'false'}         
+                                                
+                )
+
         except BaseException as e:
             print(e)
-            raise(e) 
+            raise(e)
 
             
         try:

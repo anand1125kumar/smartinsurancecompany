@@ -559,8 +559,9 @@ class searchappIntentHandler(AbstractRequestHandler):
             print(e)
             raise(e)
 
-        username = data1['Item']['username'] 
-        print(username)
+        username = data1['Item']['username']
+        username = str(username)
+        #print(username)
 
         if(username != 'null'):
 

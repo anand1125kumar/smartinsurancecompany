@@ -572,14 +572,7 @@ class searchappIntentHandler(AbstractRequestHandler):
         username = str(username)
         #print(username)
 
-        if(username != 'null'):
-            
-        ##### FETCH login status ########################
-                       
-            speech_text = "Please tell your app number"         
-
-        else:
-            speak_text = "Please login to Smart Insurance Company portal"   
+        speak_text = "Please tell your app number"
 
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)

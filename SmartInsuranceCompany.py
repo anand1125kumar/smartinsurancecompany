@@ -1509,9 +1509,9 @@ class LogoutIntentHandler(AbstractRequestHandler):
                                                 
                     )
 
-            except BaseException as e:
-                print(e)
-                raise(e)
+        except BaseException as e:
+            print(e)
+            raise(e)
 
             
         try:

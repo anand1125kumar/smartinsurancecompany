@@ -593,7 +593,7 @@ class searchappIntentHandler(AbstractRequestHandler):
 
             else:
                 speak_text = "Please login to Smart Insurance Company portal"
-                
+
         else:
             speak_text = "Please login to Smart Insurance Company portal"   
 
@@ -1511,20 +1511,20 @@ class LogoutIntentHandler(AbstractRequestHandler):
         #####################################################################
 
         try:
-                dynamodb = boto3.resource('dynamodb')
-                table = dynamodb.Table('Temp')
-                data = table.update_item(
-                    Key={
-                        'username': username
-                        },
-                        UpdateExpression="set status=:pn",
-                        ExpressionAttributeValues={':pn': 'false'}         
+            dynamodb = boto3.resource('dynamodb')
+            table = dynamodb.Table('Temp')
+            data = table.update_item(
+                Key={
+                    'username': username
+                    },
+                    UpdateExpression="set status=:pn",
+                    ExpressionAttributeValues={':pn': 'false'}         
                                                 
-                    )
+                )
 
         except BaseException as e:
-                print(e)
-                raise(e)
+            print(e)
+            raise(e)
 
         
 

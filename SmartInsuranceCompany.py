@@ -510,8 +510,8 @@ class RegisterInsuranceTermIntentHandler(AbstractRequestHandler):
                 Key={
                     'username': username
                     },
-                    UpdateExpression="set policynumber=:pn, premiumamount=:pa, premiumduedate=:pdd, advisorname=:adv, appnumber=:appno",
-                    ExpressionAttributeValues={':pn': str(policynumber), ':pa': str(premiumamount), ':pdd': nextduedate, ':adv': 'Alexa Advisor', ':appno': str(policynumber)}         
+                    UpdateExpression="set policynumber=:pn, premiumamount=:pa, premiumduedate=:pdd, advisorname=:adv, appnumber=:appno, underwritingflag=:uwrflag",
+                    ExpressionAttributeValues={':pn': str(policynumber), ':pa': str(premiumamount), ':pdd': nextduedate, ':adv': 'Alexa Advisor', ':appno': str(policynumber), ':uwrflag': 'no'}         
                                                 
                 )
 
@@ -797,7 +797,7 @@ class answerIntentHandler(AbstractRequestHandler):
                     uwraans = data1['Item']['uwrans'+str(i)]
                     uwraans = str(uwraans)
 
-                    if(uwraans == 'null'):
+                    if(uwraans == 'null' or uwraans ==''):
                
                         try:
                         

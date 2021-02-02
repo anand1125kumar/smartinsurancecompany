@@ -1484,8 +1484,6 @@ class LogoutIntentHandler(AbstractRequestHandler):
         return is_intent_name("LogoutIntent")(handler_input)
 
     def handle(self, handler_input):
-
-
         #usname = Intent.slots.username.value
 
         ## Fetch username from Bancs_log table##############################
@@ -1502,7 +1500,8 @@ class LogoutIntentHandler(AbstractRequestHandler):
             print(e)
             raise(e)    
 
-        username = data1['Item']['username'] 
+        username = data1['Item']['username']
+        username = str(username)
 
         #####################################################################
 

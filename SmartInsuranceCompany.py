@@ -135,10 +135,7 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
             status = 'inactive'
 
 
-        
-            
-
-        ################################################################################################################
+#######################################################################################################################################
 
         if status != 'active':
 
@@ -169,24 +166,24 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
                 print(e)
                 raise(e)
 
-
-
             try:
-                        dynamodb = boto3.resource('dynamodb')
-                        table = dynamodb.Table('Temp')
-                        data = table.update_item(
-                        Key={
-                            'username': username
-                            },
-                            UpdateExpression="set status=:ca",
-                            ExpressionAttributeValues={':ca': 'False'}         
-                                                
-                        )
-
-
+                dynamodb = boto3.resource('dynamodb')
+                table = dynamodb.Table('Temp')
+                data1 = table.put_item(
+                    Item={
+                        'username': username,
+                        'status': 'True',
+                        'tempfield':'null'
+                        
+                        }
+                )
             except BaseException as e:
-                    print(e)
-                    raise(e)
+                print(e)
+                raise(e)
+
+
+
+            
 
             
 

@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "SmartInsuranceCompany.py",
         "cursor": {
-          "lineNumber": 877,
-          "column": 50
+          "lineNumber": 591,
+          "column": 1
         },
         "config": {
           "runtime": "python3.8",
@@ -32,7 +32,7 @@
             "config": {}
           }
         ],
-        "lastUpdated": 1612178229139
+        "lastUpdated": 1612257468558
       }
     },
     "openFiles": [
@@ -115,7 +115,7 @@
     }
   },
   "PROJECT_META": {
-    "sigmaVersion": "1.5.1",
+    "sigmaVersion": "1.6.0",
     "projectName": "SmartInsuranceCompany",
     "projectDescription": "Smart Insurance Company",
     "projectVersion": "1.0.0",

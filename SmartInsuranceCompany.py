@@ -593,6 +593,7 @@ class searchappIntentHandler(AbstractRequestHandler):
 
             else:
                 speak_text = "Please login to Smart Insurance Company portal"
+                
         else:
             speak_text = "Please login to Smart Insurance Company portal"   
 
@@ -1086,6 +1087,9 @@ class PINIntentHandler(AbstractRequestHandler):
                 print(e)
                 raise(e)
 
+
+            
+
         else:
             speech_text = "Hello " + data['Item']['fullname'] + ".   You have successfully logged in Smart Insurance Company portal, hope you are doing great, your current location is " + data['Item']['city'] + ".   How may I help you?"
             loginFlag = 'True'
@@ -1104,22 +1108,23 @@ class PINIntentHandler(AbstractRequestHandler):
                 raise(e)
 
 
-            try:
-                        dynamodb = boto3.resource('dynamodb')
-                        table = dynamodb.Table('Temp')
-                        data = table.update_item(
-                        Key={
-                            'username': username
-                            },
-                            UpdateExpression="set status=:ca",
-                            ExpressionAttributeValues={':ca': loginFlag}         
-                                                
-                        )
+            
 
+            try:
+                dynamodb = boto3.resource('dynamodb')
+                table = dynamodb.Table('Temp')
+                data = table.update_item(
+                    Key={
+                        'username': username
+                        },
+                        UpdateExpression="set status=:ca",
+                        ExpressionAttributeValues={':ca': loginFlag}         
+                                                
+                    )
 
             except BaseException as e:
-                    print(e)
-                    raise(e)
+                print(e)
+                raise(e)
 
             
 

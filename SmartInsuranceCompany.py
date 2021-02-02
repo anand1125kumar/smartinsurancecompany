@@ -1513,7 +1513,7 @@ class LogoutIntentHandler(AbstractRequestHandler):
         try:
             dynamodb = boto3.resource('dynamodb')
             table = dynamodb.Table('Temp')
-            data = table.update_item(
+            data2 = table.update_item(
                 Key={
                     'username': username
                     },
@@ -1532,7 +1532,7 @@ class LogoutIntentHandler(AbstractRequestHandler):
         try:
             dynamodb = boto3.resource('dynamodb')
             table = dynamodb.Table('Log')
-            data = table.put_item(
+            data3 = table.put_item(
                 Item={
                        'SerialNumber': '1',
                        'username': 'null'

@@ -552,9 +552,12 @@ class searchappIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         ## Fetch username from Bancs_log table##############################
+        
+
+
         try:
             dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('Temp')
+            table = dynamodb.Table('Log')
             data1 = table.get_item(
                 Key={
                     'SerialNumber': '1'
@@ -565,11 +568,11 @@ class searchappIntentHandler(AbstractRequestHandler):
             print(e)
             raise(e)
 
-        status = data1['Item']['status']
-        status = str(status)
+        username = data1['Item']['username']
+        username = str(username)
         #print(username)
 
-        if(status == 'True'):
+        if(username != 'null'):
             
         ##### FETCH login status ########################
                        

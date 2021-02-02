@@ -184,9 +184,9 @@ class RegisterUserNameIntentHandler(AbstractRequestHandler):
                         )
 
 
-                except BaseException as e:
-                        print(e)
-                        raise(e)
+            except BaseException as e:
+                    print(e)
+                    raise(e)
 
             
 
@@ -1117,9 +1117,9 @@ class PINIntentHandler(AbstractRequestHandler):
                         )
 
 
-                except BaseException as e:
-                        print(e)
-                        raise(e)
+            except BaseException as e:
+                    print(e)
+                    raise(e)
 
             
 

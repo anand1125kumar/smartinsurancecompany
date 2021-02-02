@@ -552,25 +552,6 @@ class searchappIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         ## Fetch username from Bancs_log table##############################
-        
-
-
-        try:
-            dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('Log')
-            data1 = table.get_item(
-                Key={
-                    'SerialNumber': '1'
-                    }
-            )
-              
-        except BaseException as e:
-            print(e)
-            raise(e)
-
-        username = data1['Item']['username']
-        username = str(username)
-        #print(username)
 
         speak_text = "Please tell your app number"
 

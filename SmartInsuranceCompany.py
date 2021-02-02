@@ -1087,11 +1087,8 @@ class PINIntentHandler(AbstractRequestHandler):
                 print(e)
                 raise(e)
 
-
-            
-
         else:
-            speech_text = "Hello " + data['Item']['fullname'] + ".   You have successfully logged in Smart Insurance Company portal, hope you are doing great, your current location is " + data['Item']['city'] + ".   How may I help you?"
+            speech_text = "Hello " + data['Item']['fullname'] + ".   You have successfully logged in TCS Bancs application,    hope you are doing great, your current location is " + data['Item']['city'] + ".   How may I help you?"
             loginFlag = 'True'
         
             try:
@@ -1108,20 +1105,15 @@ class PINIntentHandler(AbstractRequestHandler):
                 raise(e)
 
 
-            
-
             try:
                 dynamodb = boto3.resource('dynamodb')
                 table = dynamodb.Table('Temp')
-                data = table.update_item(
-                    Key={
-                        'username': username
-                        },
-                        UpdateExpression="set status=:ca",
-                        ExpressionAttributeValues={':ca': loginFlag}         
-                                                
+                data = table.put_item(
+                    Item={
+                        'username': username,
+                        'status':   loginFlag
+                        }
                     )
-
             except BaseException as e:
                 print(e)
                 raise(e)
@@ -1132,6 +1124,9 @@ class PINIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response  
+
+
+
 
 #########  Fetch Premium Due Date   #######################################################################
 

@@ -1,4 +1,6 @@
 import boto3
+import json
+s3 = boto3.client('s3')
 ddb = boto3.client("dynamodb")
 import random
 from ask_sdk_core.skill_builder import SkillBuilder
@@ -14,7 +16,20 @@ class LaunchRequestHandler(AbstractRequestHandler):
         return is_request_type("LaunchRequest")(handler_input)
 
     def handle(self, handler_input):
-        handler_input.response_builder.speak("Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
+        bucket = 'smartautomationjsonstorage'
+        key = 'smartAutomation.json'
+        response=s3.get_object(Bucket=bucket,Key=key)
+        content = response['Body']
+        jsonObject = json.loads(content.read())
+        transactions = jsonObject['transactions']
+        print(transactions)
+        for record in transactions:
+            print("TransactionType:"+record['transactionType'])
+            print("TransactionAmount"+str(record['amount']))
+            print('-------')
+            TransactionAmount = str(record['amount'])
+
+        handler_input.response_builder.speak(TransactionAmount+" ,Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
         return handler_input.response_builder.response
 
 

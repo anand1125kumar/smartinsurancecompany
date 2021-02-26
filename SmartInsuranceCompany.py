@@ -630,9 +630,9 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                     uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
                     s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
 
-
+                    testneeded = ''
                     for k in range(1,19):
-                        testneeded = ''
+                        
                         n = "uwrquest"+str(k) 
                         o = "uwrans"+str(k)
 
@@ -642,8 +642,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                         uwraanss = uwraanss.lower()
 
 
-                        if 'Cholesterol' in uwrquestss and uwraanss == 'yes':
-
+                        if 'Cholesterol' in uwrquestss and uwraanss == 'yes':                            
                             testneeded = testneeded+", Cholesterol Test"
 
                         if 'Dengue' in uwrquestss and uwraanss == 'yes':
@@ -669,8 +668,8 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
 
                 
-            #else:
-                #speak_text = "Thank you, your underwriting details have been captured successfully"
+            else:
+                speak_text = "Thank you, your underwriting details have been captured successfully"
 
 
 

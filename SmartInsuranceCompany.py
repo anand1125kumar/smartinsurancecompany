@@ -558,7 +558,66 @@ class RegisterInsuranceTermIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 ########################################################################################################################
+class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("AnwserUnderwritingIntent")(handler_input)
 
+    def handle(self, handler_input):
+        
+        answer = handler_input.request_envelope.request.intent.slots['ans'].value
+        answer = answer.lower()
+
+
+
+        bucket = 'smartautomationjsonstorage'
+        key = 'underwritingquestionnaire.json'
+        response=s3.get_object(Bucket=bucket,Key=key)
+        content = response['Body']
+        jsonObject = json.loads(content.read())        
+        transactions = jsonObject['underwritingquestions']
+        for i in range(1,19):
+            uwrans = transactions['uwrans'+str(i)]
+            if(uwrans != 'null'):
+                abc = "uwrans"+str(i)
+                y= {abc:answer}
+
+
+                if(i != 19):
+                    speak_text = transactions['uwrquest'+str(i+1)]
+
+                
+
+            else:
+                speak_text = "Thank you, your underwriting details have been captured successfully"
+                 
+            
+                      
+        
+        
+        #for record in transactions:
+            #print("TransactionType:"+record['transactionType'])
+            #print("TransactionAmount"+str(record['amount']))
+            #print('-------')
+        
+            #record['amount'] = 50
+            #print("TransactionAmount"+str(record['amount']))
+            #if(record['transactionType'] =='REFUND'):
+                #y= {"amount":45}
+                
+        
+        
+        
+        transactions.update(y)
+            #print("TransactionAmount"+str(record['amount']))
+        
+        
+        
+        uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+        s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+        
+
+        handler_input.response_builder.speak(speak_text).set_should_end_session(False)
+        return handler_input.response_builder.response
 
 #########################################################################################################################
 class LoginIntentHandler(AbstractRequestHandler):
@@ -729,6 +788,17 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         uwrquest1 = str(uwrquest1)
     ####################################################
 
+    ##### ADDED ON 26 FEB 21 #######
+        uwrquest1 = transactions['uwrquest1']
+
+        uwrquest1 = uwrquest1.lower()
+
+
+
+
+
+    ######################################
+
         #####################################################################
         if(status == 'True'):
             if(uwrdecision == 'yes'):
@@ -854,6 +924,9 @@ class answerIntentHandler(AbstractRequestHandler):
 
                     uwraans = data1['Item']['uwrans'+str(i)]
                     uwraans = str(uwraans)
+
+
+
 
                     if(uwraans == 'null' or uwraans ==''):
                
@@ -1591,6 +1664,7 @@ sb.add_request_handler(IncreaseCoverAmountIntentHandler())
 sb.add_request_handler(DecreaseCoverAmountIntentHandler())
 sb.add_request_handler(RegisterUserIntentHandler())
 sb.add_request_handler(answerIntentHandler())
+sb.add_request_handler(AnwserUnderwritingIntentHandler())
 sb.add_request_handler(RegisterUserNameIntentHandler())
 sb.add_request_handler(RegisterPasswordIntentHandler())
 sb.add_request_handler(RegisterFullNameIntentHandler())

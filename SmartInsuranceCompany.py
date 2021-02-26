@@ -598,20 +598,35 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         content = response['Body']
         jsonObject = json.loads(content.read())        
         transactions = jsonObject['underwritingquestions']
-        uwrans = transactions['uwrans1']
-        uwrans = uwrans.lower()
-        y= {"uwrans1":uwrans}
-        if(uwrans == 'null'):
-            i = 1
-            abc = "uwrans"+str(i)                    
-            y= {abc:answer}
-            i=2
-            bcd = "uwrquest"+str(i)
-            speak_text = transactions[bcd]
+
+        for i in range(1,19):
+            x = "uwrans"+str(i)
+            uwrans = transactions[x]
+            uwrans = uwrans.lower()
+            
+            
+            if(uwrans == 'null'):
+                
+                z = "uwrans"+str(i)                    
+                y= {z:answer}
+                i=i+1
+                m = "uwrquest"+str(i)
+                speak_text = transactions[m]
+                transactions.update(y)
+            #print("TransactionAmount"+str(record['amount']))
+        
+        
+        
+                uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+                s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
 
                 
-        else:
-            speak_text = "Thank you, your underwriting details have been captured successfully"
+            else:
+                speak_text = "Thank you, your underwriting details have been captured successfully"
+
+
+
+        
                  
             
                       
@@ -630,13 +645,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         
         
         
-        transactions.update(y)
-            #print("TransactionAmount"+str(record['amount']))
         
-        
-        
-        uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
-        s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
         
 
         handler_input.response_builder.speak(speak_text).set_should_end_session(False)

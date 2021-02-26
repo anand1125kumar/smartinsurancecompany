@@ -641,50 +641,45 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                 
             else:
-                speak_text = "Your underwriting details have been saved successfully, thank you!."   
+                speak_text = "Your underwriting details have been saved successfully, thank you!."
+                bucket = 'smartautomationjsonstorage'
+                key = 'underwritingquestionnaire.json'
+                response=s3.get_object(Bucket=bucket,Key=key)
+                content = response['Body']
+                jsonObject = json.loads(content.read())        
+                transactions = jsonObject['underwritingquestions']
 
 
+                for k in range(1,19):
 
-        for k in range(1,19):           
-                        
-            bucket = 'smartautomationjsonstorage'
-            key = 'underwritingquestionnaire.json'
-            response=s3.get_object(Bucket=bucket,Key=key)
-            content = response['Body']
-            jsonObject = json.loads(content.read())        
-            transactions = jsonObject['underwritingquestions']
-            
-            n = "uwrquest"+str(k) 
-            o = "uwrans"+str(k)
+                    n = "uwrquest"+str(k) 
+                    o = "uwrans"+str(k)
 
-            uwrquestss = transactions[n]
-            uwraanss = transactions[o]
-            uwrquestss = uwrquestss.lower()
-            uwraanss = uwraanss.lower()
+                    uwrquestss = transactions[n]
+                    uwraanss = transactions[o]
+                    uwrquestss = uwrquestss.lower()
+                    uwraanss = uwraanss.lower()
 
 
-            if 'Cholesterol' in uwrquestss and uwraanss == 'yes':                            
-                            testneeded = testneeded+", Cholesterol Test"
+                    if 'Cholesterol' in uwrquestss and uwraanss == 'yes':                                                                   
+                        testneeded = testneeded+", Cholesterol Test"
 
-            if 'Dengue' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Dengue Test"
+                    if 'Dengue' in uwrquestss and uwraanss == 'yes':
+                        testneeded = testneeded+", Dengue Test"
 
-            if 'Diabetes' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Diabetes Test"
+                    if 'Diabetes' in uwrquestss and uwraanss == 'yes':
+                        testneeded = testneeded+", Diabetes Test"
 
-            if 'blood pressure' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Blood pressure Test"
+                    if 'blood pressure' in uwrquestss and uwraanss == 'yes':
+                        testneeded = testneeded+", Blood pressure Test"
 
-            if 'Asthma' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Asthma Test"
+                    if 'Asthma' in uwrquestss and uwraanss == 'yes':
+                        testneeded = testneeded+", Asthma Test"
 
-            if 'HIV' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", HIV Test"
+                    if 'HIV' in uwrquestss and uwraanss == 'yes':
+                        testneeded = testneeded+", HIV Test"
 
-        speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
-                    
-                 
-    
+                speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                 
         
         
 

@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "SmartInsuranceCompany.py",
         "cursor": {
-          "lineNumber": 644,
-          "column": 44
+          "lineNumber": 683,
+          "column": 9
         },
         "config": {
           "runtime": "python3.8",

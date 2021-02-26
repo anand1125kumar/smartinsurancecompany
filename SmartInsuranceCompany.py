@@ -606,19 +606,17 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
             
             
             if(uwrans == 'null'):
-                
-                z = "uwrans"+str(i)                    
-                y= {z:answer}
-                i=i+1
-                m = "uwrquest"+str(i)
-                speak_text = transactions[m]
-                transactions.update(y)
-            #print("TransactionAmount"+str(record['amount']))
-        
-        
-        
-                uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
-                s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+                if(i!=19):                
+                    z = "uwrans"+str(i)                    
+                    y= {z:answer}
+                    i=i+1
+                    m = "uwrquest"+str(i)
+                    speak_text = transactions[m]
+                    transactions.update(y)
+                    #print("TransactionAmount"+str(record['amount']))  
+
+                    uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+                    s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
 
                 
             else:

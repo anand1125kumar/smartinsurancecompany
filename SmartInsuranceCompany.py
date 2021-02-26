@@ -645,8 +645,8 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                         uwrquestss = transactions[n]
                         uwraanss = transactions[o]
-                        uwrquestss = uwrquestss.lower()
-                        uwraanss = uwraanss.lower()
+                        #uwrquestss = uwrquestss.lower()
+                        #uwraanss = uwraanss.lower()
 
 
                         if 'Cholesterol' in uwrquestss and uwraanss == 'yes':                                                                   

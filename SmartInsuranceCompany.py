@@ -606,6 +606,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
             
             
             if(uwrans == 'null'):
+
                 if(i!=19):                
                     z = "uwrans"+str(i)                    
                     y= {z:answer}
@@ -617,33 +618,62 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                     uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
                     s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+
+                    break
+                
+                else:
+                    z = "uwrans"+str(i)                    
+                    y= {z:answer}
+                    transactions.update(y)
+                    #print("TransactionAmount"+str(record['amount']))  
+
+                    uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+                    s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+
+
+                    for k in range(1,19):
+                        testneeded = ''
+                        n = "uwrquest"+str(k) 
+                        o = "uwrans"+str(k)
+
+                        uwrquestss = transactions[n]
+                        uwraanss = transactions[o]
+
+                        if 'Cholesterol' in uwrquestss and uwraanss == 'yes':
+
+                            testneeded = testneeded+", Cholesterol Test"
+
+                        if 'Dengue' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Dengue Test"
+
+                        if 'Diabetes' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Diabetes Test"
+
+                        if 'blood pressure' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Blood pressure Test"
+
+                        if 'Asthma' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Asthma Test"
+
+                        if 'HIV' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", HIV Test"
+
+                    speakText = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
+                        
+
+
                     break
 
+
                 
-            else:
-                speak_text = "Thank you, your underwriting details have been captured successfully"
+            #else:
+                #speak_text = "Thank you, your underwriting details have been captured successfully"
 
 
 
         
                  
-            
-                      
-        
-        
-        #for record in transactions:
-            #print("TransactionType:"+record['transactionType'])
-            #print("TransactionAmount"+str(record['amount']))
-            #print('-------')
-        
-            #record['amount'] = 50
-            #print("TransactionAmount"+str(record['amount']))
-            #if(record['transactionType'] =='REFUND'):
-                #y= {"amount":45}
-                
-        
-        
-        
+    
         
         
 

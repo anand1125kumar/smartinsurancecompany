@@ -629,39 +629,10 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                     uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
                     s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+                    break
 
-                    testneeded=''
+                    
 
-                    for k in range(1,19):
-                        
-                        n = "uwrquest"+str(k) 
-                        o = "uwrans"+str(k)
-
-                        uwrquestss = transactions[n]
-                        uwraanss = transactions[o]
-                        uwrquestss = uwrquestss.lower()
-                        uwraanss = uwraanss.lower()
-
-
-                        if 'Cholesterol' in uwrquestss and uwraanss == 'yes':                            
-                            testneeded = testneeded+", Cholesterol Test"
-
-                        if 'Dengue' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Dengue Test"
-
-                        if 'Diabetes' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Diabetes Test"
-
-                        if 'blood pressure' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Blood pressure Test"
-
-                        if 'Asthma' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", Asthma Test"
-
-                        if 'HIV' in uwrquestss and uwraanss == 'yes':
-                            testneeded = testneeded+", HIV Test"
-
-                speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
                      
 
 
@@ -670,11 +641,41 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                 
             else:
-                speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
+                speak_text = "Your underwriting details have been saved successfully, thank you!."   
 
 
 
-        
+        for k in range(1,19):           
+                        
+            n = "uwrquest"+str(k) 
+            o = "uwrans"+str(k)
+
+            uwrquestss = transactions[n]
+            uwraanss = transactions[o]
+            uwrquestss = uwrquestss.lower()
+            uwraanss = uwraanss.lower()
+
+
+            if 'Cholesterol' in uwrquestss and uwraanss == 'yes':                            
+                            testneeded = testneeded+", Cholesterol Test"
+
+            if 'Dengue' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Dengue Test"
+
+            if 'Diabetes' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Diabetes Test"
+
+            if 'blood pressure' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Blood pressure Test"
+
+            if 'Asthma' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", Asthma Test"
+
+            if 'HIV' in uwrquestss and uwraanss == 'yes':
+                            testneeded = testneeded+", HIV Test"
+
+        speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
+                    
                  
     
         

@@ -623,7 +623,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                 
                 if(i==19):
                     z = "uwrans"+str(i)                    
-                    y= {z:answer}
+                    y= {"uwrflag":"yes",z:answer}
                     transactions.update(y)
                     #print("TransactionAmount"+str(record['amount']))  
 

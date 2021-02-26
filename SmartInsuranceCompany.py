@@ -601,9 +601,13 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         uwrans = transactions['uwrans1']
         uwrans = uwrans.lower()
         y= {"uwrans1":uwrans}
-        if(uwrans == 'null'):                        
-            y= {"uwrans1":answer}
-            speak_text = transactions['uwrquest2']
+        if(uwrans == 'null'):
+            i = 1
+            abc = "uwrans"+str(i)                    
+            y= {abc:answer}
+            i=i+1
+            bcd = uwrquest+str(i)
+            speak_text = transactions[bcd]
 
                 
         else:

@@ -599,7 +599,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         jsonObject = json.loads(content.read())        
         transactions = jsonObject['underwritingquestions']
 
-        for i in range(1,19):
+        for i in range(1,20):
             x = "uwrans"+str(i)
             uwrans = transactions[x]
             uwrans = uwrans.lower()
@@ -661,7 +661,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                             testneeded = testneeded+", HIV Test"
 
                     speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
-                        
+                    break  
 
 
                     

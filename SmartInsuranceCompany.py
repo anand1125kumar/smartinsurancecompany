@@ -647,6 +647,13 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
         for k in range(1,19):           
                         
+            bucket = 'smartautomationjsonstorage'
+            key = 'underwritingquestionnaire.json'
+            response=s3.get_object(Bucket=bucket,Key=key)
+            content = response['Body']
+            jsonObject = json.loads(content.read())        
+            transactions = jsonObject['underwritingquestions']
+            
             n = "uwrquest"+str(k) 
             o = "uwrans"+str(k)
 

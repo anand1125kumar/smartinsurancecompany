@@ -744,17 +744,6 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
         
         transactions = jsonObject['underwritingquestions']
         
-        uwrdecision = transactions['uwrflag']
-        
-        uwrdecision = uwrdecision.lower()
-
-        uwrquest1 = transactions['uwrquest1']
-
-        uwrquest1 = uwrquest1.lower()
-
-
-
-
 
         ###########################################
         

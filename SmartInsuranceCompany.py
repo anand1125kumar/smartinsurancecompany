@@ -630,6 +630,10 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                     uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
                     s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
                     
+
+        
+
+            else:
                     bucket = 'smartautomationjsonstorage'
                     key = 'underwritingquestionnaire.json'
                     response=s3.get_object(Bucket=bucket,Key=key)
@@ -668,11 +672,8 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                             testneeded = testneeded+", HIV Test"
 
                     speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded
-                    break
-        
-
-            else:
-                speak_text = "Your underwriting details have been saved successfully, thank you!."
+                    
+                
                 
         
 

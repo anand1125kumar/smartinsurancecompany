@@ -564,7 +564,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         
-        answer = handler_input.request_envelope.request.intent.slots['ans'].value
+        answer = handler_input.request_envelope.request.intent.slots['answer'].value
         answer = answer.lower()
 
 

@@ -650,6 +650,31 @@ class captureunderwritingsIntentHandler(AbstractRequestHandler):
 
         uwrdecision = handler_input.request_envelope.request.intent.slots['uwrflag'].value
         uwrdecision = uwrdecision.lower()
+
+
+        ### ADDED ON 26 FEB 21 #######
+        bucket = 'smartautomationjsonstorage'
+        
+        key = 'underwritingquestionnaire.json'
+        response=s3.get_object(Bucket=bucket,Key=key)
+        content = response['Body']
+        jsonObject = json.loads(content.read())
+        
+        transactions = jsonObject['underwritingquestions']
+        
+        uwrdecision = transactions['uwrflag']
+        
+        uwrdecision = uwrdecision.lower()
+
+        uwrquest1 = transactions['uwrquest1']
+
+        uwrquest1 = uwrquest1.lower()
+
+
+
+
+
+        ###########################################
         
         ## Fetch username from Bancs_log table##############################
         try:

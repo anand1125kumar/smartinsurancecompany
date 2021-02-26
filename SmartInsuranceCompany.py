@@ -630,6 +630,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                     uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
                     s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
 
+                    testneeded=''
                     
                     for k in range(1,19):
                         

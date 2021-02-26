@@ -22,23 +22,28 @@ class LaunchRequestHandler(AbstractRequestHandler):
         content = response['Body']
         jsonObject = json.loads(content.read())
         transactions = jsonObject['transactions']
-        print(transactions)
+        #print(transactions)
         for record in transactions:
-            print("TransactionType:"+record['transactionType'])
-            print("TransactionAmount"+str(record['amount']))
-            print('-------')
-            TransactionAmount = str(record['amount'])
-            y= {
-                "amount":90
-                }
+            #print("TransactionType:"+record['transactionType'])
+            #print("TransactionAmount"+str(record['amount']))
+            #print('-------')
+            y= {"amount":str(record['amount'])}
+            #record['amount'] = 50
+            #print("TransactionAmount"+str(record['amount']))
+            if(record['transactionType'] =='REFUND'):
+                y= {"amount":45}
+                TransactionAmount = str(record['amount'])
         
         
         
             record.update(y)
             #print("TransactionAmount"+str(record['amount']))
         
-            uploadByteStream = bytes(json.dumps(transactions).encode('UTF-8'))
-            s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+        
+        
+        uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+        s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+        #print('Put Complete')
 
         handler_input.response_builder.speak(TransactionAmount+" ,Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
         return handler_input.response_builder.response

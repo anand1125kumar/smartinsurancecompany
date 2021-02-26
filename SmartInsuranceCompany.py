@@ -16,35 +16,35 @@ class LaunchRequestHandler(AbstractRequestHandler):
         return is_request_type("LaunchRequest")(handler_input)
 
     def handle(self, handler_input):
-        bucket = 'smartautomationjsonstorage'
+        #bucket = 'smartautomationjsonstorage'
         #key = 'smartAutomation.json'
-        key = 'underwritingquestionnaire.json'
-        response=s3.get_object(Bucket=bucket,Key=key)
-        content = response['Body']
-        jsonObject = json.loads(content.read())
+        #key = 'underwritingquestionnaire.json'
+        #response=s3.get_object(Bucket=bucket,Key=key)
+        #content = response['Body']
+        #jsonObject = json.loads(content.read())
         #transactions = jsonObject['transactions']
-        transactions = jsonObject['underwritingquestions']
+        #transactions = jsonObject['underwritingquestions']
         #print(transactions)
         #for record in transactions:
             #print("TransactionType:"+record['transactionType'])
             #print("TransactionAmount"+str(record['amount']))
             #print('-------')
-        y= {"uwrflag":"yes"}
+        #y= {"uwrflag":"yes"}
             #record['amount'] = 50
             #print("TransactionAmount"+str(record['amount']))
             #if(record['transactionType'] =='REFUND'):
                 #y= {"amount":45}
                 
         
-        uwrquestion = transactions['uwrquest1']
+        #uwrquestion = transactions['uwrquest1']
         
-        transactions.update(y)
+        #transactions.update(y)
             #print("TransactionAmount"+str(record['amount']))
         
         
         
-        uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
-        s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+        #uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+        #s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
         #print('Put Complete')
 
         handler_input.response_builder.speak("Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)

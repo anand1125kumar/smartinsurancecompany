@@ -621,7 +621,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                     break
                 
-                else:
+                if(i==19):
                     z = "uwrans"+str(i)                    
                     y= {z:answer}
                     transactions.update(y)
@@ -638,6 +638,9 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                         uwrquestss = transactions[n]
                         uwraanss = transactions[o]
+                        uwrquestss = uwrquestss.lower()
+                        uwraanss = uwraanss.lower()
+
 
                         if 'Cholesterol' in uwrquestss and uwraanss == 'yes':
 

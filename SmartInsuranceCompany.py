@@ -598,20 +598,16 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         content = response['Body']
         jsonObject = json.loads(content.read())        
         transactions = jsonObject['underwritingquestions']
-        for i in range(1,19):
-            uwrans = transactions['uwrans'+str(i)]
-            if(uwrans != 'null'):
-                abc = "uwrans"+str(i)
-                y= {abc:answer}
-
-
-                if(i != 19):
-                    speak_text = transactions['uwrquest'+str(i+1)]
+        uwrans = transactions['uwrans1']
+            
+        if(uwrans != 'null'):
+            
+            y= {"uwrans1":answer}
+            speak_text = transactions['uwrquest2']
 
                 
-
-            else:
-                speak_text = "Thank you, your underwriting details have been captured successfully"
+        else:
+            speak_text = "Thank you, your underwriting details have been captured successfully"
                  
             
                       

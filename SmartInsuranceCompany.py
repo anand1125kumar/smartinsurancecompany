@@ -600,7 +600,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         transactions = jsonObject['underwritingquestions']
         uwrans = transactions['uwrans1']
         uwrans = uwrans.lower()
-        y= {"uwrans1":"null"}
+        y= {"uwrans1":uwrans}
         if(uwrans != 'null'):                        
             y= {"uwrans1":answer}
             speak_text = transactions['uwrquest2']

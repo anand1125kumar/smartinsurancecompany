@@ -32,9 +32,9 @@ class LaunchRequestHandler(AbstractRequestHandler):
             #print("TransactionAmount"+str(record['amount']))
             if(record['transactionType'] =='REFUND'):
                 y= {"amount":45}
-                TransactionAmount = str(record['amount'])
+                
         
-        
+            TransactionAmounta = str(record['amount'])
         
             record.update(y)
             #print("TransactionAmount"+str(record['amount']))
@@ -45,7 +45,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
         #print('Put Complete')
 
-        handler_input.response_builder.speak(TransactionAmount+" ,Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
+        handler_input.response_builder.speak(TransactionAmounta+" ,Welcome to Smart Insurance Company, we offer a large variety of insurance products at an affordable premium. I can help you to buy a policy online best suited to your needs. Would you like to proceed to buy a life insurance policy online or login to Smart Insurance Company voice portal.").set_should_end_session(False)
         return handler_input.response_builder.response
 
 

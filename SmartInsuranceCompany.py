@@ -104,9 +104,32 @@ class appNumberIntentHandler(AbstractRequestHandler):
                         }
                 )
 
+
+                ### ADDED ON 26 FEB 21 ##########################
+                bucket = 'smartautomationjsonstorage'
+        
+                key = 'underwritingquestionnaire.json'
+                response=s3.get_object(Bucket=bucket,Key=key)
+                content = response['Body']
+                jsonObject = json.loads(content.read())
+        
+                transactions = jsonObject['underwritingquestions']
+        
+                uwrdecision = transactions['uwrflag']
+        
+                uwrdecision = uwrdecision.lower()
+
+                
+
+
+                ######################################################
+
+
+
+
                 uwrflag = str(data['Item']['underwritingflag'])
                 
-                if(uwrflag == "no"):
+                if(uwrdecision == "no"):
                     speakText = "Would you like to capture your pending underwriting details?"
 
                 else:

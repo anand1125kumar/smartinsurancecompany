@@ -29,7 +29,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
             #print("TransactionType:"+record['transactionType'])
             #print("TransactionAmount"+str(record['amount']))
             #print('-------')
-        y= {"uwrflag":'yes'}
+        y= {"uwrflag":"yes"}
             #record['amount'] = 50
             #print("TransactionAmount"+str(record['amount']))
             #if(record['transactionType'] =='REFUND'):

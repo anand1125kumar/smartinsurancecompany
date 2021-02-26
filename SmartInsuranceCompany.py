@@ -665,7 +665,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                         
 
 
-                    break
+                    
 
 
                 

@@ -606,7 +606,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
             abc = "uwrans"+str(i)                    
             y= {abc:answer}
             i=2
-            bcd = uwrquest+str(i)
+            bcd = "uwrquest"+str(i)
             speak_text = transactions[bcd]
 
                 

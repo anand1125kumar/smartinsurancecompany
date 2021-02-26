@@ -631,7 +631,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                     s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
 
                     testneeded=''
-                    
+
                     for k in range(1,19):
                         
                         n = "uwrquest"+str(k) 
@@ -661,8 +661,8 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                         if 'HIV' in uwrquestss and uwraanss == 'yes':
                             testneeded = testneeded+", HIV Test"
 
-                    speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
-                    break  
+                speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
+                     
 
 
                     

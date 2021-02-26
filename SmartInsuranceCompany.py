@@ -586,7 +586,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         return is_intent_name("AnwserUnderwritingIntent")(handler_input)
 
     def handle(self, handler_input):
-        
+        testneeded = ''
         answer = handler_input.request_envelope.request.intent.slots['answer'].value
         answer = answer.lower()
 
@@ -630,7 +630,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                     uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
                     s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
 
-                    testneeded = ''
+                    
                     for k in range(1,19):
                         
                         n = "uwrquest"+str(k) 
@@ -660,7 +660,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
                         if 'HIV' in uwrquestss and uwraanss == 'yes':
                             testneeded = testneeded+", HIV Test"
 
-                    speakText = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
+                    speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
                         
 
 
@@ -669,7 +669,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                 
             else:
-                speak_text = "Thank you, your underwriting details have been captured successfully"
+                speak_text = "Your underwriting details have been saved successfully, thank you!. You need to undergo the following medical tests"+testneeded                   
 
 
 

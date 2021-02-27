@@ -590,8 +590,12 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         answer = handler_input.request_envelope.request.intent.slots['answer'].value
         answer = answer.lower()
 
+        if y in answer or s in answer:
+            answer = "yes"
 
-
+        if n in answer:
+            answer = "no"
+        
         bucket = 'smartautomationjsonstorage'
         key = 'underwritingquestionnaire.json'
         response=s3.get_object(Bucket=bucket,Key=key)

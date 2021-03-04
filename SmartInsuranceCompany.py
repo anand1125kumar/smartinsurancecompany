@@ -603,7 +603,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
         jsonObject = json.loads(content.read())        
         transactions = jsonObject['underwritingquestions']
 
-        for i in range(1,16):
+        for i in range(1,14):
             x = "uwrans"+str(i)
             uwrans = transactions[x]
             uwrans = uwrans.lower()
@@ -611,7 +611,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
             
             if(uwrans == 'null'):
 
-                if(i!=15):
+                if(i!=13):
                     c = "uwrquest"+str(i)
                     if 'Dengue' in transactions[c] and answer == 'no':
                         z = "uwrans"+str(i)                    
@@ -648,7 +648,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
 
                     break
                 
-                if(i==15):
+                if(i==13):
                     z = "uwrans"+str(i)                    
                     y= {"uwrflag":"yes",z:answer}
                     transactions.update(y)
@@ -663,7 +663,7 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
             else:              
                 
                 testneeded= ''
-                for k in range(1,15):
+                for k in range(1,13):
 
                     n = "uwrquest"+str(k) 
                     o = "uwrans"+str(k)

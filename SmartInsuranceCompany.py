@@ -611,10 +611,33 @@ class AnwserUnderwritingIntentHandler(AbstractRequestHandler):
             
             if(uwrans == 'null'):
 
-                if(i!=15):                
+                if(i!=15):
+                    c = "uwrquest"+str(i)
+                    if 'Dengue' in transactions[c] and answer == 'no':
+                        z = "uwrans"+str(i)                    
+                        y= {z:answer}                       
+                        transactions.update(y)
+                        #print("TransactionAmount"+str(record['amount']))  
+
+                        uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+                        s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+
+                        i = i+1
+
+                    if 'Cholesterol' in transactions[c] and answer == 'no':
+                        z = "uwrans"+str(i)                    
+                        y= {z:answer}                       
+                        transactions.update(y)
+                        #print("TransactionAmount"+str(record['amount']))  
+
+                        uploadByteStream = bytes(json.dumps(jsonObject).encode('UTF-8'))
+                        s3.put_object(Bucket = bucket, Key = key, Body = uploadByteStream)
+                        
+                        i = i+1
+
                     z = "uwrans"+str(i)                    
                     y= {z:answer}
-                    i=i+1
+                    i=i+1                 
                     m = "uwrquest"+str(i)
                     speak_text = transactions[m]
                     transactions.update(y)
